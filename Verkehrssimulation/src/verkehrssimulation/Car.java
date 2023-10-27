@@ -4,10 +4,7 @@
  */
 package verkehrssimulation;
 
-/**
- *
- * @author Felix
- */
+
 public class Car {
     
 }
