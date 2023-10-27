@@ -9,5 +9,13 @@ package verkehrssimulation;
  * @author Felix
  */
 public class Section {
+    public int nr;//Variable für die Abschnittsnumer
+    int maxSpeed;
+    double length;
+
+    public Section(int nr, int maxSpeed, double length){
+
+    }
+
     
 }
