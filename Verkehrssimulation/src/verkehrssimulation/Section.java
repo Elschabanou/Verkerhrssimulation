@@ -13,8 +13,22 @@ public class Section {
     int maxSpeed;
     double length;
 
-    public Section(int nr, int maxSpeed, double length){
+    public Section(int nummer, int maximumSpeed, double l){
+        nr = nummer;
+        maxSpeed = maximumSpeed;
+        length = l;
+    }
 
+    public int getmaxSpeed(){
+        return maxSpeed;
+    }
+
+    public double getlength(){
+        return length;
+    }
+
+    public int getNr(){
+        return nr;
     }
 
     
