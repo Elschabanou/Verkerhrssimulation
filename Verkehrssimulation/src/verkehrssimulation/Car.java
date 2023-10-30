@@ -53,11 +53,11 @@ public class Car {
             }
         }else distance = 10;
 
-        if((distance/1000) < velocity/2 || velocity > section.maxSpeed){
+        if((distance*1000) < velocity/2 || velocity > section.maxSpeed){
             //acceleration = maxDcc;
             regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc, timeStep);
-        }else if((distance/1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
+        }else if((distance*1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             //acceleration = maxAcc;
             regler.setParameters(0.2, 0.0005);
             updateAcceleration(maxAcc, timeStep);
