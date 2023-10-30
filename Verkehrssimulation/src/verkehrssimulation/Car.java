@@ -36,7 +36,7 @@ public class Car {
 
     void calcVelocity(){
 
-        Car PrevCar = v.getPrev();
+        Car PrevCar = v.getPrev(this);
 
         if(PrevCar.getSection() == section){
             distance = (PrevCar.getPos() - relPos) * section.length;
