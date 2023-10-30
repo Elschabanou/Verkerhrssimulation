@@ -33,7 +33,9 @@ public class Car {
     }
 
     void calcVelocity(){
+
         Car PrevCar = Verkehrssimulation.getPrev();
+        
         if(PrevCar.getSection() == section){
             distance = (PrevCar.getPos() - relPos) * section.length;
         }else{
