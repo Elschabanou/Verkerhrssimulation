@@ -34,7 +34,7 @@ public class Car {
 
     }
 
-    void calcVelocity(){
+    void calcAcceleration(){
 
         Car PrevCar = v.getPrev(this);
         if(PrevCar != null){
@@ -55,7 +55,7 @@ public class Car {
 
     }
 
-    void changeVelocity(double timeStep){
+    void move(double timeStep){
         velocity = acceleration * timeStep;
         relPos = relPos + (velocity * timeStep)/section.length;
     }
@@ -65,8 +65,8 @@ public class Car {
             section = v.getNewSection(section);
             relPos = 0;
         }
-        calcVelocity();
-        changeVelocity(timeStep);
+        calcAcceleration();
+        move(timeStep);
     }
 
 
