@@ -35,14 +35,14 @@ public class Car {
 
     }
 
-    void updateAcceleration(double setpoint) {
+    void updateAcceleration(double setpoint, double timeStep) {
 
-        double controlSignal = regler.calculate(setpoint, acceleration);
+        double controlSignal = regler.calculate(setpoint, acceleration, timeStep);
         acceleration += controlSignal;
         System.out.println(acceleration);
     }
 
-    void calcAcceleration(){
+    void calcAcceleration(double timeStep){
 
         Car PrevCar = v.getPrev(this);
         if(PrevCar != null){
@@ -56,15 +56,15 @@ public class Car {
         if((distance/1000) < velocity/2 || velocity > section.maxSpeed){
             //acceleration = maxDcc;
             regler.setParameters(0.4, 0.01);
-            updateAcceleration(maxDcc);
+            updateAcceleration(maxDcc, timeStep);
         }else if((distance/1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             //acceleration = maxAcc;
             regler.setParameters(0.2, 0.0005);
-            updateAcceleration(maxAcc);
+            updateAcceleration(maxAcc, timeStep);
         }else{
             //acceleration = 0;
             regler.setParameters(0.5, 0.0005);
-            updateAcceleration(0.0);
+            updateAcceleration(0.0, timeStep);
         }
 
     }
@@ -79,7 +79,7 @@ public class Car {
             section = v.getNewSection(section);
             relPos = 0;
         }
-        calcAcceleration();
+        calcAcceleration(timeStep);
         move(timeStep);
     }
 

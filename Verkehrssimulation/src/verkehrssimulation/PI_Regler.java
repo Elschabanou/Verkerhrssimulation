@@ -17,14 +17,14 @@ public class PI_Regler {
         this.ki = ki;
     }
 
-    public double calculate(double setpoint, double currentAcceleration) {
+    public double calculate(double setpoint, double currentAcceleration, double timeStep) {
         double error = setpoint - currentAcceleration;
 
         double proportional = kp * error;
         integral += error;
         double integralTerm = ki * integral;
 
-        double controlSignal = proportional + integralTerm;
+        double controlSignal = proportional + timeStep * integralTerm;
         
         return controlSignal;
     }
