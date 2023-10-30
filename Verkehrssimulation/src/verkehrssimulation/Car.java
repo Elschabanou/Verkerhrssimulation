@@ -14,19 +14,17 @@ public class Car {
     double accStep = 0.1;
     double maxAcc;
     double maxDcc;
-    int mass;
     public String colour;
     public Section section;
     public double relPos = 0;
     double distance = 0;
     Verkehrssimulation v;
 
-    public Car(String name, String colour, double maxAcc, double maxDcc, int mass, Section section, Verkehrssimulation v){
+    public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
         this.colour = colour;
         this.maxAcc = maxAcc;
         this.maxDcc = maxDcc;
-        this.mass = mass;
         this.section = section;
         this.v = v;
 
