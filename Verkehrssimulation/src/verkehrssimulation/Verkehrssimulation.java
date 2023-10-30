@@ -13,7 +13,7 @@ import java.util.*;
 public class Verkehrssimulation {
 
     ArrayList<Section> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
-
+    ArrayList<Car> cars = new ArrayList<>();
     /**
      * @param args the command line arguments
      */
@@ -21,9 +21,16 @@ public class Verkehrssimulation {
 
     }
 
+    private void init(){
+        makeSections();
+        makeCars();
+    }
 
-    public static Car getPrev(){
-        return Car(0, null, 0, 0, 0, null); //Übergabewerte müssen geändert werden
+    private void makeCars(){
+        cars.add(new Car("Taycan 4s","white",35.316,-60, sec[0],this));
+    }
+    public Car getPrev(){
+        return Car; //Übergabewerte müssen geändert werden
     }
 
     public void makeSections(){
