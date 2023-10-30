@@ -1,6 +1,10 @@
 
 package verkehrssimulation;
 
+/**
+ *
+ * @author Arne
+ */
 
 public class Car {
 
@@ -29,9 +33,12 @@ public class Car {
     }
 
     void calcVelocity(){
-        if(Verkehrssimulation.getPrev().getSection() == section){
-            distance = (Verkehrssimulation.getPrev().getPos() - relPos) * section.getLength();
-        } 
+        Car PrevCar = Verkehrssimulation.getPrev();
+        if(PrevCar.getSection() == section){
+            distance = (PrevCar.getPos() - relPos) * section.length;
+        }else{
+            distance = (PrevCar.getPos() * PrevCar.getSection().length) + ((1-relPos) * section.length);
+        }
     }
 
 
