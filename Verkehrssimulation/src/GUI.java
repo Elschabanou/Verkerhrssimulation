@@ -47,7 +47,7 @@ public class GUI {
                 // Load the image from a local file
                 try {
          
-                    BufferedImage image = ImageIO.read(getClass().getResource("images/Taycan_Topview_white.png"));
+                    BufferedImage image = ImageIO.read(getClass().getResource("Taycan_Topview_white.png"));
                     // Draw the resized image in the middle of the panel
                     int imageX = (panelWidth - image.getWidth()) / 2;
                     int imageY = (panelHeight - image.getHeight()) / 2;
