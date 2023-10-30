@@ -35,7 +35,7 @@ public class GUI {
 
         JPanel drawingPanel = new JPanel() {
             @Override
-            protected void paintComponent(Graphics g) {
+            public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 int panelWidth = getWidth();
                 int panelHeight = getHeight();
