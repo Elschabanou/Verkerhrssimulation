@@ -32,19 +32,4 @@ public class Section {
     public double getlength(){
         return length;
     }
-
-    /*public int getNr(ArrayList<Object> arraySection){
-        int nr;
-
-        for(int i = 0; i < arraySection.size(); i++){
-
-        }
-
-        return nr;
-    }*/
-
-    
-    public double getLength(){
-        return length;
-    }
 }
