@@ -28,4 +28,9 @@ public class PI_Regler {
         
         return controlSignal;
     }
+
+    public void setParameters(double kp, double ki) {
+        this.kp = kp;
+        this.ki = ki;
+    }
 }

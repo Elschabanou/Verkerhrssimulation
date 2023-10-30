@@ -28,7 +28,7 @@ public class Car {
         this.maxDcc = maxDcc;
         this.section = section;
         this.v = v;
-        this.regler = new PI_Regler(0.4, 0.01);
+        this.regler = new PI_Regler(0.4, 0.01); //kp: wie schnell wird angestrebte Beschleunigung erreicht  |  ki: wie stark schwank er nach oben aus
     }
 
     public static void main(String[] args){
@@ -53,14 +53,17 @@ public class Car {
             }
         }else distance = 10;
 
-        if((distance/1000) < velocity/2){
+        if((distance/1000) < velocity/2 || velocity > section.maxSpeed){
             //acceleration = maxDcc;
+            regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc);
         }else if((distance/1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             //acceleration = maxAcc;
+            regler.setParameters(0.2, 0.0005);
             updateAcceleration(maxAcc);
         }else{
             //acceleration = 0;
+            regler.setParameters(0.5, 0.0005);
             updateAcceleration(0.0);
         }
 
