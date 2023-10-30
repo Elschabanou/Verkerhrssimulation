@@ -25,6 +25,7 @@ public class Verkehrssimulation {
 
     public static Car getPrev(){
         return new Car(0, null, 0, 0, 0, null); //Muss geändert werden
+    }
 
     public void sectionsErstellen(){
         //irgendwelche Sections werden erstellt
