@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Verkehrssimulation {
     Verkehrssimulation v;
-    ArrayList<Section> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
+    ArrayList<Section> sec = new ArrayList<>();
     ArrayList<Car> cars = new ArrayList<>();
 
     public Verkehrssimulation(){
@@ -58,23 +58,12 @@ public class Verkehrssimulation {
     }
 
     public void makeSections(){
-        //irgendwelche Sections werden erstellt
-        Section a = new Section(30, 20);
-        Section b = new Section(50,10);
-        Section c = new Section(100, 50);
-        Section d = new Section(60,2);
-        Section e = new Section(130,60);
-        Section f = new Section(70,15);
-
-        /* es wäre evtl praktischer, wenn wir die Eigenschaft nr bei Section weglassen würden und
-         * die Stelle der Section mit einer Methode über den DynArray bestimmen würden (dynamischer)
-         */
-        sec.add(a);
-        sec.add(b);
-        sec.add(c);
-        sec.add(d);
-        sec.add(e);
-        sec.add(f);
+        sec.add(new Section(30, 20));
+        sec.add(new Section(50,10));
+        sec.add(new Section(100, 50));
+        sec.add(new Section(60,2));
+        sec.add(new Section(130,60));
+        sec.add(new Section(70,15));
     }
 
 
@@ -117,22 +106,6 @@ public class Verkehrssimulation {
                 end = true;
             }
         }
-
-    }
-    /*public void makeCars(int id, String colour){
-        Car porsche911 = new Car(id, colour, );
-        Car porscheTaycanTurboS = new Car(id,);
-        Car porscheMacan = new Car();
-        Car porscheGT3RS = new Car();
-    }
-
-    public void make911(String name, int id, String colour){
-        Car name = new Car(id, colour, 71.32, -35.32, 2000, );
-
-    }*/
-
-    public void verkehrssimulationStarten(){
-
 
     }
     
