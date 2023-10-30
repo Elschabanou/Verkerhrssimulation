@@ -1,8 +1,10 @@
+package verkehrssimulation;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package verkehrssimulation;
+
 
 import java.util.*;
 
@@ -14,7 +16,6 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -28,7 +29,7 @@ public class GUI {
     }
 
     private static void createAndShowGUI() {
-        JFrame frame = new JFrame("Simple Swing GUI");
+        JFrame frame = new JFrame("Simple SwingGUI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
 
@@ -46,7 +47,7 @@ public class GUI {
                 // Load the image from a local file
                 try {
          
-                    BufferedImage image = ImageIO.read(getClass().getResource("images/Taycan_Topview_white.png"));
+                    BufferedImage image = ImageIO.read(getClass().getResource("Taycan_Topview_white.png"));
                     // Draw the resized image in the middle of the panel
                     int imageX = (panelWidth - image.getWidth()) / 2;
                     int imageY = (panelHeight - image.getHeight()) / 2;
