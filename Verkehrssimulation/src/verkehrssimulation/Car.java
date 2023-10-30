@@ -8,7 +8,7 @@ package verkehrssimulation;
 
 public class Car {
 
-    public int id;
+    public String name;
     double velocity = 0;
     double acceleration = 0;
     double accStep = 0.1;
@@ -19,14 +19,16 @@ public class Car {
     Section section;
     double relPos = 0;
     double distance = 0;
+    Verkehrssimulation v;
 
-    public Car(int id, String colour, double maxAcc, double maxDcc, int mass, Section section) {
-        id = id;
-        colour = colour;
-        maxAcc = maxAcc;
-        maxDcc = maxDcc;
-        mass = mass;
-        section = section;
+    public Car(String name, String colour, double maxAcc, double maxDcc, int mass, Section section, Verkehrssimulation v){
+        this.name = name;
+        this.colour = colour;
+        this.maxAcc = maxAcc;
+        this.maxDcc = maxDcc;
+        this.mass = mass;
+        this.section = section;
+        this.v = v;
 
     }
 
@@ -36,7 +38,7 @@ public class Car {
 
     void calcVelocity(){
 
-        Car PrevCar = Verkehrssimulation.getPrev();
+        Car PrevCar = v.getPrev();
 
         if(PrevCar.getSection() == section){
             distance = (PrevCar.getPos() - relPos) * section.length;
@@ -44,11 +46,26 @@ public class Car {
             distance = (PrevCar.getPos() * PrevCar.getSection().length) + ((1-relPos) * section.length);
         }
 
-        if(distance <= velocity/2){
-            if(acceleration >= 0) acceleration = 0;
-            else if(acceleration >= maxDcc + accStep) acceleration -= accStep;
+        if(distance < velocity/2){
+            if(acceleration > 0) acceleration = 0;
+            if(acceleration >= maxDcc + accStep) acceleration -= accStep;
+        }else if(distance > velocity/2 + 0.005 && velocity < section.maxSpeed){
+            if(acceleration < 0) acceleration = 0;
+            if(acceleration <= maxAcc - accStep) acceleration += accStep;
+        }else{
+            acceleration = 0;
         }
 
+    }
+
+    void changeVelocity(double timeStep){
+
+    }
+
+    void update(double timeStep){
+        if(relPos >= 1){
+            section = v.getNewSection(section);
+        }
     }
 
 
