@@ -11,8 +11,6 @@ package verkehrssimulation;
 public class Section {
 
 
-    double length;
-
     public static void main(String[] args) {
         
     }
