@@ -4,7 +4,7 @@
  */
 package verkehrssimulation;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
@@ -12,7 +12,8 @@ import java.util.ArrayList;
  */
 public class Verkehrssimulation {
 
-    ArrayList<Object> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern können
+    ArrayList<Object> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
+
     /**
      * @param args the command line arguments
      */
@@ -30,7 +31,9 @@ public class Verkehrssimulation {
         Section e = new Section(5, 130,60);
         Section f = new Section(6, 70,15);
 
-        //es wäre evtl praktischer, wenn wir die Eigenschaft nr bei Section weglassen würden und das nur über das DynArray regeln würden
+        /* es wäre evtl praktischer, wenn wir die Eigenschaft nr bei Section weglassen würden und
+         * die Stelle der Section mit einer Methode über den DynArray bestimmen würden (dynamischer)
+         */
         sec.add(a);
         sec.add(b);
         sec.add(c);
