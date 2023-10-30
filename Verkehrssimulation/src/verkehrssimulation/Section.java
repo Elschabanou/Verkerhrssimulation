@@ -9,5 +9,14 @@ package verkehrssimulation;
  * @author Felix
  */
 public class Section {
+
+    double length;
+
+    public static void main(String[] args) {
+        
+    }
     
+    public double getLength(){
+        return length;
+    }
 }
