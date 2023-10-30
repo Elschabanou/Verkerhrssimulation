@@ -4,6 +4,8 @@
  */
 package verkehrssimulation;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Felix
@@ -15,12 +17,10 @@ public class Section {
         
     }
 
-    public int nr;//Variable für die Abschnittsnumer
     int maxSpeed;
     double length;
 
-    public Section(int nummer, int maximumSpeed, double l){
-        nr = nummer;
+    public Section(int maximumSpeed, double l){
         maxSpeed = maximumSpeed;
         length = l;
     }
@@ -33,9 +33,15 @@ public class Section {
         return length;
     }
 
-    public int getNr(){
+    /*public int getNr(ArrayList<Object> arraySection){
+        int nr;
+
+        for(int i = 0; i < arraySection.size(); i++){
+
+        }
+
         return nr;
-    }
+    }*/
 
     
     public double getLength(){

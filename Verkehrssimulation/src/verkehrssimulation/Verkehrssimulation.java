@@ -12,29 +12,28 @@ import java.util.*;
  */
 public class Verkehrssimulation {
 
-    ArrayList<Object> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
+    ArrayList<Section> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-        System.out.print("Hallo Arne");
     }
 
 
     public static Car getPrev(){
-        return new Car(0, null, 0, 0, 0, null); //Übergabewerte müssen geändert werden
+        return Car(0, null, 0, 0, 0, null); //Übergabewerte müssen geändert werden
     }
 
-    public void sectionsErstellen(){
+    public void makeSections(){
         //irgendwelche Sections werden erstellt
-        Section a = new Section(1, 30, 20);
-        Section b = new Section(2, 50,10);
-        Section c = new Section(3, 100, 50);
-        Section d = new Section(4, 60,2);
-        Section e = new Section(5, 130,60);
-        Section f = new Section(6, 70,15);
+        Section a = new Section(30, 20);
+        Section b = new Section(50,10);
+        Section c = new Section(100, 50);
+        Section d = new Section(60,2);
+        Section e = new Section(130,60);
+        Section f = new Section(70,15);
 
         /* es wäre evtl praktischer, wenn wir die Eigenschaft nr bei Section weglassen würden und
          * die Stelle der Section mit einer Methode über den DynArray bestimmen würden (dynamischer)
@@ -46,6 +45,37 @@ public class Verkehrssimulation {
         sec.add(e);
         sec.add(f);
     }
+
+    public void Section(){
+
+    }
+
+    /*Die auf die übergebene Section folgende Section wird über das Array bestimmt und
+     *zurückgegeben
+     */
+    public Section getNewSection(Section s){
+        int j = 0;
+        for(int i = 0; i < sec.size(); i++){
+            if(s == sec.get(i)){
+                j = i;
+                i = sec.size();
+            }
+        }
+        s = sec.get(j + 1);
+        return s;
+    }
+
+    /*public void makeCars(int id, String colour){
+        Car porsche911 = new Car(id, colour, );
+        Car porscheTaycanTurboS = new Car(id,);
+        Car porscheMacan = new Car();
+        Car porscheGT3RS = new Car();
+    }
+
+    public void make911(String name, int id, String colour){
+        Car name = new Car(id, colour, 71.32, -35.32, 2000, );
+
+    }*/
 
     public void verkehrssimulationStarten(){
 
