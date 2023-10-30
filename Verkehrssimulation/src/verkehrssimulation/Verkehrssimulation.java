@@ -14,12 +14,18 @@ public class Verkehrssimulation {
     Verkehrssimulation v;
     ArrayList<Section> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
     ArrayList<Car> cars = new ArrayList<>();
+
+    public Verkehrssimulation(){
+        v = new Verkehrssimulation();
+        v.init();
+    }
+
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
-        v = new Verkehrssimulation();
-        v.init();
+
     }
 
     private void init(){
@@ -88,7 +94,7 @@ public class Verkehrssimulation {
     }
 
     private void run(){
-        boolean end = false
+        boolean end = false;
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
