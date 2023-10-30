@@ -47,11 +47,9 @@ public class Car {
         }
 
         if(distance < velocity/2){
-            if(acceleration > 0) acceleration = 0;
-            if(acceleration >= maxDcc + accStep) acceleration -= accStep;
+            acceleration = maxDcc;
         }else if(distance > velocity/2 + 0.005 && velocity < section.maxSpeed){
-            if(acceleration < 0) acceleration = 0;
-            if(acceleration <= maxAcc - accStep) acceleration += accStep;
+            acceleration = maxAcc;
         }else{
             acceleration = 0;
         }
