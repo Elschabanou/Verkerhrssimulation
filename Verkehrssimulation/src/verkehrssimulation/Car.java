@@ -68,6 +68,8 @@ public class Car {
             section = v.getNewSection(section);
             relPos = 0;
         }
+        calcVelocity();
+        changeVelocity(timeStep);
     }
 
 
