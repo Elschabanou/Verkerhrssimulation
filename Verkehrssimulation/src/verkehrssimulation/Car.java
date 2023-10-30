@@ -19,6 +19,7 @@ public class Car {
     public double relPos = 0;
     double distance = 0;
     Verkehrssimulation v;
+    PI_Regler regler;
 
     public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
@@ -27,11 +28,18 @@ public class Car {
         this.maxDcc = maxDcc;
         this.section = section;
         this.v = v;
-
+        this.regler = new PI_Regler(0.4, 0.01);
     }
 
     public static void main(String[] args){
 
+    }
+
+    void updateAcceleration(double setpoint) {
+
+        double controlSignal = regler.calculate(setpoint, acceleration);
+        acceleration += controlSignal;
+        System.out.println(acceleration);
     }
 
     void calcAcceleration(){
@@ -46,11 +54,14 @@ public class Car {
         }else distance = 10;
 
         if((distance/1000) < velocity/2){
-            acceleration = maxDcc;
+            //acceleration = maxDcc;
+            updateAcceleration(maxDcc);
         }else if((distance/1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
-            acceleration = maxAcc;
+            //acceleration = maxAcc;
+            updateAcceleration(maxAcc);
         }else{
-            acceleration = 0;
+            //acceleration = 0;
+            updateAcceleration(0.0);
         }
 
     }
