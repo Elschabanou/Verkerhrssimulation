@@ -15,9 +15,9 @@ public class Car {
     double maxAcc;
     double maxDcc;
     int mass;
-    String colour;
-    Section section;
-    double relPos = 0;
+    public String colour;
+    public Section section;
+    public double relPos = 0;
     double distance = 0;
     Verkehrssimulation v;
 
@@ -59,12 +59,14 @@ public class Car {
     }
 
     void changeVelocity(double timeStep){
-
+        velocity = acceleration * timeStep;
+        relPos = relPos + (velocity * timeStep)/section.length;
     }
 
     void update(double timeStep){
         if(relPos >= 1){
             section = v.getNewSection(section);
+            relPos = 0;
         }
     }
 
