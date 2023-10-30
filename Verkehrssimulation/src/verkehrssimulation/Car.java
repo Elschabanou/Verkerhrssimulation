@@ -38,16 +38,16 @@ public class Car {
 
         Car PrevCar = v.getPrev(this);
         if(PrevCar != null){
-            if(PrevCar.getSection() == section){
-                distance = (PrevCar.getPos() - relPos) * section.length;
+            if(PrevCar.section == section){
+                distance = (PrevCar.relPos - relPos) * section.length;
             }else{
-                distance = (PrevCar.getPos() * PrevCar.getSection().length) + ((1-relPos) * section.length);
+                distance = (PrevCar.relPos * PrevCar.section.length) + ((1-relPos) * section.length);
             }
         }else distance = 10;
 
-        if(distance < velocity/2){
+        if((distance/1000) < velocity/2){
             acceleration = maxDcc;
-        }else if(distance > (velocity/2 + 0.005) && velocity < section.maxSpeed){
+        }else if((distance/1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             acceleration = maxAcc;
         }else{
             acceleration = 0;
@@ -56,8 +56,8 @@ public class Car {
     }
 
     void move(double timeStep){
-        velocity = acceleration * timeStep;
-        relPos = relPos + (velocity * timeStep)/section.length;
+        velocity += acceleration * timeStep;
+        relPos += (velocity * timeStep)/section.length;
     }
 
     void update(double timeStep){
@@ -69,14 +69,6 @@ public class Car {
         move(timeStep);
     }
 
-
-    public double getPos(){
-        return relPos;
-    }
-
-    public Section getSection(){
-        return section;
-    }
-
+    
 
 }
