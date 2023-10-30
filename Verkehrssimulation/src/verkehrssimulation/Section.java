@@ -20,9 +20,9 @@ public class Section {
     int maxSpeed;
     double length;
 
-    public Section(int maximumSpeed, double l){
-        maxSpeed = maximumSpeed;
-        length = l;
+    public Section(int maxSpeed, double length){
+        this.maxSpeed = maxSpeed;
+        this.length = length;
     }
 
     public int getmaxSpeed(){
