@@ -28,8 +28,24 @@ public class Verkehrssimulation {
 
     private void makeCars(){
         cars.add(new Car("Taycan 4s","white",35.316,-60, sec.get(0),this));
+        cars.add(new Car("Taycan s","blue",30.316,-60, sec.get(0),this));
+        cars.add(new Car("Taycan GTS","black",40.316,-65, sec.get(0),this));
+        cars.add(new Car("Taycan","red",25.316,-55, sec.get(0),this));
     }
-    public Car getPrev(){
+    public Car getPrev(Car driving){
+        if(driving == cars.get(0)){
+            return null;
+        }else{
+            int index = 0;
+            for (Car i:cars) {
+                if(i == driving){
+                    break;
+                }else{
+                    index++;
+                }
+            }
+            return cars.get(index-1);
+        }
         return Car; //Übergabewerte müssen geändert werden
     }
 
