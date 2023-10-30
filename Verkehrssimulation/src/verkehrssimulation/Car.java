@@ -37,12 +37,13 @@ public class Car {
     void calcVelocity(){
 
         Car PrevCar = v.getPrev(this);
-
-        if(PrevCar.getSection() == section){
-            distance = (PrevCar.getPos() - relPos) * section.length;
-        }else{
-            distance = (PrevCar.getPos() * PrevCar.getSection().length) + ((1-relPos) * section.length);
-        }
+        if(PrevCar != null){
+            if(PrevCar.getSection() == section){
+                distance = (PrevCar.getPos() - relPos) * section.length;
+            }else{
+                distance = (PrevCar.getPos() * PrevCar.getSection().length) + ((1-relPos) * section.length);
+            }
+        }else distance = 10;
 
         if(distance < velocity/2){
             acceleration = maxDcc;
