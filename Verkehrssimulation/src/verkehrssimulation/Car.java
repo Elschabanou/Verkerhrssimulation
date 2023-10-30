@@ -46,7 +46,7 @@ public class Car {
 
         if(distance < velocity/2){
             acceleration = maxDcc;
-        }else if(distance > velocity/2 + 0.005 && velocity < section.maxSpeed){
+        }else if(distance > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             acceleration = maxAcc;
         }else{
             acceleration = 0;
