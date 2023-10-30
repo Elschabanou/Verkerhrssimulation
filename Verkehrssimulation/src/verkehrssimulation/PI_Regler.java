@@ -8,11 +8,24 @@ package verkehrssimulation;
 
 public class PI_Regler {
 
-    public PI_Regler(){
-        
+    private double kp; // Proportionaler Anteil
+    private double ki; // Integraler Anteil
+    private double integral = 0.0; // Speichert die Summe der Fehler über die Zeit
+
+    public PI_Regler(double kp, double ki) {
+        this.kp = kp;
+        this.ki = ki;
     }
 
-    public static void main(String[] args){
+    public double calculate(double setpoint, double currentAcceleration) {
+        double error = setpoint - currentAcceleration;
 
+        double proportional = kp * error;
+        integral += error;
+        double integralTerm = ki * integral;
+
+        double controlSignal = proportional + integralTerm;
+        
+        return controlSignal;
     }
 }
