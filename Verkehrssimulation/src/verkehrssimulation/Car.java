@@ -9,7 +9,7 @@ package verkehrssimulation;
 public class Car {
 
     public String name;
-    double velocity = 0;
+    public double velocity = 0;
     double acceleration = 0;
     double accStep = 0.1;
     double maxAcc;
