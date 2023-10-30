@@ -27,7 +27,7 @@ public class Verkehrssimulation {
     }
 
     private void makeCars(){
-        cars.add(new Car("Taycan 4s","white",35.316,-60, sec[0],this));
+        cars.add(new Car("Taycan 4s","white",35.316,-60, sec.get(0),this));
     }
     public Car getPrev(){
         return Car; //Übergabewerte müssen geändert werden
