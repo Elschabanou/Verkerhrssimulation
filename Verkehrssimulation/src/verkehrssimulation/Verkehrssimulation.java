@@ -93,6 +93,19 @@ public class Verkehrssimulation {
         return s;
     }
 
+    public int getSectionNr(Section section){
+        int nr = 0;
+
+        for(int i = 0; i < sec.size(); i++){
+            if(section == sec.get(i)){
+                nr = i;
+                i = sec.size();
+            }
+        }
+
+        return nr;
+    }
+
     private void run(){
         boolean end = false;
         while(!end){
