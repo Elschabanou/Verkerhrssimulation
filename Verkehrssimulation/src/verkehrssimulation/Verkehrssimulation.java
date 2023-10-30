@@ -11,19 +11,21 @@ import java.util.*;
  * @author Felix
  */
 public class Verkehrssimulation {
-
+    Verkehrssimulation v;
     ArrayList<Section> sec = new ArrayList<>();//Dynamischer Array, in dem wir die Sections abspeichern
     ArrayList<Car> cars = new ArrayList<>();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        v = new Verkehrssimulation();
+        v.init();
     }
 
     private void init(){
         makeSections();
         makeCars();
+        run();
     }
 
     private void makeCars(){
@@ -46,7 +48,7 @@ public class Verkehrssimulation {
             }
             return cars.get(index-1);
         }
-        return Car; //Übergabewerte müssen geändert werden
+
     }
 
     public void makeSections(){
@@ -69,9 +71,6 @@ public class Verkehrssimulation {
         sec.add(f);
     }
 
-    public void Section(){
-
-    }
 
     /*Die auf die übergebene Section folgende Section wird über das Array bestimmt und
      *zurückgegeben
@@ -88,6 +87,19 @@ public class Verkehrssimulation {
         return s;
     }
 
+    private void run(){
+        boolean end = false
+        while(!end){
+            for(int i = 0; i<cars.size();i++)
+            {
+                cars.get(i).update(0.05);
+            }
+            if(cars.get(0).section == sec.get(sec.size()) && cars.get(0).relPos == 1){
+                end = true;
+            }
+        }
+
+    }
     /*public void makeCars(int id, String colour){
         Car porsche911 = new Car(id, colour, );
         Car porscheTaycanTurboS = new Car(id,);
