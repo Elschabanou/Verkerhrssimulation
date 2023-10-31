@@ -20,7 +20,7 @@ public class Car {
     double distance = 0;
     Verkehrssimulation v;
     PI_Regler regler;
-    double timeGes = 0;
+    public double timeGes = 0;
     double lastTime = 0;
     double brakingDist = 0;
 
@@ -80,7 +80,7 @@ public class Car {
         relPos += (velocity * timeStep)/section.length;
         timeGes += timeStep;
         if(timeGes*60*60 >= lastTime*60*60 + 0.3){
-            System.out.println("Max: " + section.maxSpeed + " Cur: " + velocity + /*" Strecke: " + relPos*section.length + " Time: " + timeGes*60*60 */ " BrWeg: " + brakingDist);
+            //System.out.println("Max: " + section.maxSpeed + " Cur: " + velocity + /*" Strecke: " + relPos*section.length + " Time: " + timeGes*60*60 */ " BrWeg: " + brakingDist);
             lastTime = timeGes;
         }
     }

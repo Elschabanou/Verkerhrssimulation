@@ -20,7 +20,6 @@ public class GUI2 {
     private Verkehrssimulation v;
 
     public void updateGUI(ArrayList<Car> cars) {
-        // Aktualisieren Sie hier Ihre cars-ArrayList
     }
 
     public void createAndShowGUI() {
@@ -42,21 +41,30 @@ public class GUI2 {
                 g.setColor(Color.GREEN);
                 g.fillRect(0, 0, panelWidth, panelHeight);
 
-                int xPos=0;
+                int gesLength = 0;
+                double kDist = 50;
                 int offset = getWidth()*3/4;
+
+                for(int i=0; i<sections.size();i++){
+                    gesLength += sections.get(i).length*getWidth()/5;
+                }
+
+                g.setColor(Color.BLACK);
+                g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 10);
+
                 for (int i = 0; i < sections.size(); i++) {
-                    try {
-                        g.drawRect(, getHeight()/3, sections.get(i).length/5*getWidth(), getHeight()/5);
-                        xPos+=sections.get(i).length;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    g.setColor(Color.GRAY);
+                    g.fillRect(, 
+                        getHeight()/3, 
+                        gesLength, 
+                        getHeight()/5);
                 }
 
                 for (int i = 0; i < cars.size(); i++) {
                     try {
                         BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
-                        g.drawImage(image, (int)(cars.get(i).relPos*getWidth()+i*200), getHeight()/2, this);
+                        if(i!=0) g.drawImage(image, (int)(offset - i * cars.get(i).distance/5*getWidth() * kDist), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                        else g.drawImage(image, (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
