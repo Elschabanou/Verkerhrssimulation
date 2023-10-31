@@ -17,6 +17,7 @@ public class Verkehrssimulation {
     ArrayList<Car> cars = new ArrayList<>();
 
     public Verkehrssimulation(){
+        GUI2 gui = new GUI2(this);
         init();
     }
 
@@ -36,7 +37,7 @@ public class Verkehrssimulation {
 
     private void makeCars(){
         cars.add(new Car("Taycan 4s","white",91000,-150000, sec.get(0),this));
-        //cars.add(new Car("Taycan s","blue",30.316,-60, sec.get(0),this));
+        cars.add(new Car("Taycan s","blue",91000,-150000, sec.get(0),this));
         //cars.add(new Car("Taycan GTS","black",40.316,-65, sec.get(0),this));
         //cars.add(new Car("Taycan","red",25.316,-55, sec.get(0),this));
     }

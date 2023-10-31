@@ -14,10 +14,11 @@ import java.util.ArrayList;
 
 public class GUI2 {
     private static final int ANIMATION_DELAY = 10;
-    private ArrayList<String> cars = new ArrayList<>();
+    private ArrayList<Car> cars = new ArrayList<>();
     private BufferedImage carImage;
+    private Verkehrssimulation v;
 
-    public void updateGUI(ArrayList<String> cars) {
+    public void updateGUI(ArrayList<Car> cars) {
         // Aktualisieren Sie hier Ihre cars-ArrayList
     }
 
@@ -27,7 +28,7 @@ public class GUI2 {
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
-        cars.add("Taycan");
+        cars = v.cars;
 
         JPanel drawingPanel = new JPanel() {
             @Override
@@ -44,7 +45,7 @@ public class GUI2 {
                     //Car car = cars.get(i);
                     try {
                         BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white.png"));
-                        g.drawImage(image, 0, 0, this);
+                        g.drawImage(image, getWidth()/4*i, getHeight()/2, this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -72,10 +73,18 @@ public class GUI2 {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public GUI2(Verkehrssimulation ve){
+        v = ve;
+        SwingUtilities.invokeLater(() -> {
+            //GUI2 gui = new GUI2();
+            createAndShowGUI();
+        });
+    }
+
+    /*public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             GUI2 gui = new GUI2();
             gui.createAndShowGUI();
         });
-    }
+    }*/
 }
