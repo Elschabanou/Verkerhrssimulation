@@ -22,6 +22,7 @@ public class Car {
     PI_Regler regler;
     double timeGes = 0;
     double lastTime = 0;
+    double brakingDist = 0;
 
     public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
@@ -55,7 +56,9 @@ public class Car {
             }
         }else distance = 10;
 
-        if((distance*1000) < velocity/2 || velocity > section.maxSpeed){
+        brakingDist = (velocity/10)*(velocity/10) - (v.getNewSection(section).maxSpeed/100)*(v.getNewSection(section).maxSpeed/100);
+
+        if((distance*1000) < velocity/2 || velocity > section.maxSpeed || brakingDist >= (1-relPos)*section.length){
             //acceleration = maxDcc;
             //regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc, timeStep);
