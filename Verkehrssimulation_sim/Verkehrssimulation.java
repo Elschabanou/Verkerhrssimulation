@@ -31,7 +31,7 @@ public class Verkehrssimulation {
 
     private void makeCars(){
         cars.add(new Car("Taycan 4s","white",91000,-150000, sec.get(0),this));
-        cars.add(new Car("Taycan s","blue",91000,-150000, sec.get(0),this));
+        //cars.add(new Car("Taycan s","blue",91000,-150000, sec.get(0),this));
         //cars.add(new Car("Taycan GTS","black",40.316,-65, sec.get(0),this));
         //cars.add(new Car("Taycan","red",25.316,-55, sec.get(0),this));
     }
