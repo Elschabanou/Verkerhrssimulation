@@ -45,7 +45,7 @@ public class GUI2 {
                     //Car car = cars.get(i);
                     try {
                         BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white.png"));
-                        g.drawImage(image, getWidth()/4*i, getHeight()/2, this);
+                        g.drawImage(image, i * 300, getHeight()/2, this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
