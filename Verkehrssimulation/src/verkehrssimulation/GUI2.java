@@ -54,10 +54,10 @@ public class GUI2 {
 
                 for (int i = 0; i < sections.size(); i++) {
                     g.setColor(Color.GRAY);
-                    g.fillRect(, 
+                    /*g.fillRect(, 
                         getHeight()/3, 
                         gesLength, 
-                        getHeight()/5);
+                        getHeight()/5);*/ //x Wert muss noch mit relPos angepasst werden um die Sections zu bewegen
                 }
 
                 for (int i = 0; i < cars.size(); i++) {
