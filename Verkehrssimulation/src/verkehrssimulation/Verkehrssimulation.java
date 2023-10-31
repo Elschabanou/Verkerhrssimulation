@@ -94,7 +94,7 @@ public class Verkehrssimulation {
 
         return nr;
     }
-
+ 
     private void run(){
         boolean end = false;
         while(!end){
