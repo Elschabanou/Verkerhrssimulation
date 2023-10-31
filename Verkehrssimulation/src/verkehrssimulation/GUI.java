@@ -30,13 +30,22 @@ public class GUI {
     public ArrayList<Car> cars = new ArrayList<>();
     private int imageX = 0; // Anfangsposition des Bildes auf der x-Achse
     private BufferedImage image;
-    
-    
+    Verkehrssimulation v = new Verkehrssimulation();
+    ArrayList<Car> car = new ArrayList<>();
+
 
     public static void main(String[] args) {
+
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
+    }
+
+    public void lists(){
+        for(int i = 0; i < v.cars.size(); i++){
+            System.out.println(v.cars.get(i));
+        }
+
     }
 
     public void updateGUI(ArrayList<Car> cars) {
