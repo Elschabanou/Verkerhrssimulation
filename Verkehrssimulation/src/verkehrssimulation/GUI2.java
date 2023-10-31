@@ -44,7 +44,7 @@ public class GUI2 {
                 for (int i = 0; i < cars.size(); i++) {
                     //Car car = cars.get(i);
                     try {
-                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white.png"));
+                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
                         g.drawImage(image, (int)(cars.get(i).relPos*getWidth()+i*200), getHeight()/2, this);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -56,7 +56,7 @@ public class GUI2 {
         frame.add(drawingPanel);
 
         try {
-            carImage = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white.png"));
+            carImage = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
