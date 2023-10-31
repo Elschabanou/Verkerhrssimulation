@@ -20,6 +20,8 @@ public class Car {
     double distance = 0;
     Verkehrssimulation v;
     PI_Regler regler;
+    double timeGes = 0;
+    double lastTime = 0;
 
     public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
@@ -28,7 +30,7 @@ public class Car {
         this.maxDcc = maxDcc;
         this.section = section;
         this.v = v;
-        this.regler = new PI_Regler(0.4, 0.01); //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner desto langsamer)  |  ki: wie stark schwank er nach oben aus
+        this.regler = new PI_Regler(0.000005, 0.000000000005); //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner desto langsamer)  |  ki: wie stark schwank er nach oben aus
     }
 
     public static void main(String[] args){
@@ -39,7 +41,7 @@ public class Car {
 
         double controlSignal = regler.calculate(setpoint, acceleration, timeStep);
         acceleration += controlSignal;
-        System.out.println(acceleration);
+        //System.out.println(acceleration);
     }
 
     void calcAcceleration(double timeStep){
@@ -55,15 +57,15 @@ public class Car {
 
         if((distance*1000) < velocity/2 || velocity > section.maxSpeed){
             //acceleration = maxDcc;
-            regler.setParameters(0.4, 0.01);
+            //regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc, timeStep);
         }else if((distance*1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             //acceleration = maxAcc;
-            regler.setParameters(0.2, 0.0005);
+            //regler.setParameters(0.2, 0.0005);
             updateAcceleration(maxAcc, timeStep);
         }else{
             //acceleration = 0;
-            regler.setParameters(0.5, 0.0005);
+            //regler.setParameters(0.5, 0.0005);
             updateAcceleration(0.0, timeStep);
         }
 
@@ -72,6 +74,11 @@ public class Car {
     void move(double timeStep){
         velocity += acceleration * timeStep;
         relPos += (velocity * timeStep)/section.length;
+        timeGes += timeStep;
+        if(timeGes*60*60 >= lastTime*60*60 + 0.3){
+            System.out.println("Max: " + section.maxSpeed + " Cur: " + velocity + /*" Strecke: " + relPos*section.length + */" Time: " + timeGes*60*60);
+            lastTime = timeGes;
+        }
     }
 
     void update(double timeStep){

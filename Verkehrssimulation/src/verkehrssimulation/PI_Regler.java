@@ -24,7 +24,7 @@ public class PI_Regler {
         integral += error;
         double integralTerm = ki * integral;
 
-        double controlSignal = proportional + timeStep * integralTerm;
+        double controlSignal = proportional + /*timeStep * */ integralTerm;
         
         return controlSignal;
     }
