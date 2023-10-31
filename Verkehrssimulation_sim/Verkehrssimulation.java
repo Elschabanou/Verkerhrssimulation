@@ -1,4 +1,6 @@
+
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -10,8 +12,6 @@ public class Verkehrssimulation {
     ArrayList<Car> cars = new ArrayList<>();
 
     public Verkehrssimulation(){
-        //v = new Verkehrssimulation();
-        //v.init();
         init();
     }
 
@@ -20,18 +20,18 @@ public class Verkehrssimulation {
      */
 
     public static void main(String[] args) {
-
+        Verkehrssimulation v = new Verkehrssimulation();
     }
 
-    void init(){
+    private void init(){
         makeSections();
         makeCars();
         run();
     }
 
-    void makeCars(){
-        cars.add(new Car("Taycan 4s","white",1000,-1800, sec.get(0),this));
-        //cars.add(new Car("Taycan s","blue",30.316,-60, sec.get(0),this));
+    private void makeCars(){
+        cars.add(new Car("Taycan 4s","white",91000,-150000, sec.get(0),this));
+        cars.add(new Car("Taycan s","blue",91000,-150000, sec.get(0),this));
         //cars.add(new Car("Taycan GTS","black",40.316,-65, sec.get(0),this));
         //cars.add(new Car("Taycan","red",25.316,-55, sec.get(0),this));
     }
@@ -53,9 +53,9 @@ public class Verkehrssimulation {
     }
 
     public void makeSections(){
-        sec.add(new Section(30, 20));
-        sec.add(new Section(50,10));
-        sec.add(new Section(100, 50));
+        sec.add(new Section(100, 2));
+        sec.add(new Section(50,1));
+        sec.add(new Section(200, 5));
         sec.add(new Section(60,2));
         sec.add(new Section(130,60));
         sec.add(new Section(70,15));
@@ -95,7 +95,13 @@ public class Verkehrssimulation {
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
-                cars.get(i).update(0.0000005);
+                cars.get(i).update(0.000000001);
+                try {
+                    Thread.sleep(0);
+                  } catch (InterruptedException e) {
+                    System.out.println("Fehler: " + e.getMessage());
+                    Thread.currentThread().interrupt();
+                  }
             }
             if(cars.get(0).section == sec.get(sec.size()-1) && cars.get(0).relPos == 1){
                 end = true;
