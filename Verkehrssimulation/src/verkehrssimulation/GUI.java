@@ -44,11 +44,15 @@ public class GUI {
            
         
     }
+    
+    public static void start(int cars_count){
+         
+            
+        }
 
     public static void createAndShowGUI() {
         GUI gui = new GUI();
         
-   
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
@@ -71,15 +75,16 @@ public class GUI {
                 g.setColor(new Color(105, 109, 110));
                 g.fillRect(0, panelHeight / 2 - 25, 500, 150);
                 
-                for (Car car: gui.cars){
-                    /*try{*/
-                        /*BufferedImage image = ImageIO.read(GUI.class.getResource("images/Taycan_Topview_white.png"));
-                        g.drawImage(image, pos_start, panelHeight /2, this);*/
+                for (int i = 0; i < 4; i++){
+                    try{
+                        BufferedImage image = ImageIO.read(GUI.class.getResource("images/Taycan_Topview_white.png"));
+                        g.drawImage(image, pos_start, panelHeight /2, this);
                         System.out.print("halo");
+                        pos_start += 300;
                         
-                    /*} catch (IOException e){
+                    } catch (IOException e){
                         e.printStackTrace();
-                    }*/
+                    }
                 }
             }
         };
