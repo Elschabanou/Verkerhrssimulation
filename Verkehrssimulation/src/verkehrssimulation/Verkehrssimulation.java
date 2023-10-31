@@ -63,8 +63,6 @@ public class Verkehrssimulation {
         sec.add(new Section(50,1));
         sec.add(new Section(200, 5));
         sec.add(new Section(60,2));
-        sec.add(new Section(130,60));
-        sec.add(new Section(70,15));
     }
 
 
