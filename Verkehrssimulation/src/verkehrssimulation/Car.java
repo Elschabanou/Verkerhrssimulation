@@ -58,7 +58,7 @@ public class Car {
 
         brakingDist = (velocity/10)*(velocity/10) - (v.getNewSection(section).maxSpeed/100)*(v.getNewSection(section).maxSpeed/100);
 
-        if((distance*1000) < velocity/2 || velocity > section.maxSpeed || brakingDist >= (1-relPos)*section.length){
+        if((distance*1000) < velocity/2 || velocity > section.maxSpeed || (brakingDist >= (1-relPos)*section.length) && velocity > v.getNewSection(section).maxSpeed){
             //acceleration = maxDcc;
             //regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc, timeStep);
