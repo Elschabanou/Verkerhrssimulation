@@ -8,17 +8,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Timer;
 import java.util.ArrayList;
 
 
 
 public class GUI2 {
     private static final int ANIMATION_DELAY = 10;
-    private ArrayList<Car> cars = new ArrayList<>();
+    private ArrayList<String> cars = new ArrayList<>();
     private BufferedImage carImage;
 
-    public void updateGUI(ArrayList<Car> cars) {
+    public void updateGUI(ArrayList<String> cars) {
         // Aktualisieren Sie hier Ihre cars-ArrayList
     }
 
@@ -28,6 +27,7 @@ public class GUI2 {
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
+        cars.add("Taycan");
 
         JPanel drawingPanel = new JPanel() {
             @Override
@@ -39,11 +39,12 @@ public class GUI2 {
                 g.setColor(Color.BLUE);
                 g.fillRect(0, 0, panelWidth, panelHeight);
 
+
                 for (int i = 0; i < cars.size(); i++) {
-                    Car car = cars.get(i);
+                    //Car car = cars.get(i);
                     try {
-                        BufferedImage image = ImageIO.read(GUI.class.getResource("images/" + car.getImageName()));
-                        g.drawImage(image, 200, 200, this);
+                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white.png"));
+                        g.drawImage(image, 0, 0, this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -54,7 +55,7 @@ public class GUI2 {
         frame.add(drawingPanel);
 
         try {
-            carImage = ImageIO.read(GUI.class.getResource("images/car.png"));
+            carImage = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,7 +74,7 @@ public class GUI2 {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            GUI gui = new GUI();
+            GUI2 gui = new GUI2();
             gui.createAndShowGUI();
         });
     }
