@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Section
+comment0.text=\n\n\ @author\ Felix\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=maxSpeed\ length
+comment2.target=Section(int,\ double)
+comment3.params=
+comment3.target=int\ getmaxSpeed()
+comment4.params=
+comment4.target=double\ getlength()
+numComments=5

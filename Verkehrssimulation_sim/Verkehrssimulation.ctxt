@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Verkehrssimulation
+comment0.text=\n\n\ @author\ Felix\n
+comment1.params=
+comment1.target=Verkehrssimulation()
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=\n\ @param\ args\ the\ command\ line\ arguments\n
+comment3.params=
+comment3.target=void\ init()
+comment4.params=
+comment4.target=void\ makeCars()
+comment5.params=driving
+comment5.target=Car\ getPrev(Car)
+comment6.params=
+comment6.target=void\ makeSections()
+comment7.params=s
+comment7.target=Section\ getNewSection(Section)
+comment7.text=Die\ auf\ die\ \u00FCbergebene\ Section\ folgende\ Section\ wird\ \u00FCber\ das\ Array\ bestimmt\ und\nzur\u00FCckgegeben\n
+comment8.params=section
+comment8.target=int\ getSectionNr(Section)
+comment9.params=
+comment9.target=void\ run()
+numComments=10

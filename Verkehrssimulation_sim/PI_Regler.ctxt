@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=PI_Regler
+comment1.params=kp\ ki
+comment1.target=PI_Regler(double,\ double)
+comment2.params=setpoint\ currentAcceleration\ timeStep
+comment2.target=double\ calculate(double,\ double,\ double)
+comment3.params=kp\ ki
+comment3.target=void\ setParameters(double,\ double)
+numComments=4
