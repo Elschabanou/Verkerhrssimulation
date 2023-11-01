@@ -4,6 +4,7 @@
  */
 package verkehrssimulation;
 
+import java.awt.Color;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -38,8 +39,8 @@ public class Verkehrssimulation {
     private void makeCars(){
         cars.add(new Car("Taycan 4s","white",91000,-150000, sec.get(0),this));
         cars.add(new Car("Taycan s","blue",91000,-150000, sec.get(0),this));
-        //cars.add(new Car("Taycan GTS","black",40.316,-65, sec.get(0),this));
-        //cars.add(new Car("Taycan","red",25.316,-55, sec.get(0),this));
+        cars.add(new Car("Taycan GTS","black",91000,-150000, sec.get(0),this));
+        cars.add(new Car("Taycan","red",91000,-150000, sec.get(0),this));
     }
     public Car getPrev(Car driving){
         if(driving == cars.get(0)){
@@ -59,10 +60,10 @@ public class Verkehrssimulation {
     }
 
     public void makeSections(){
-        sec.add(new Section(100, 2, 0));
-        sec.add(new Section(50,1, 2));
-        sec.add(new Section(200, 5, 3));
-        sec.add(new Section(60,2, 8));
+        sec.add(new Section(50, 0.25, 0, Color.GRAY));
+        sec.add(new Section(200,0.8, 2, Color.RED));
+        sec.add(new Section(20, 2, 3, Color.GRAY));
+        sec.add(new Section(60,2, 8, Color.LIGHT_GRAY));
     }
 
 
@@ -99,13 +100,13 @@ public class Verkehrssimulation {
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
-                cars.get(i).update(0.000000001);
-                try {
+                cars.get(i).update(0.000000000015); //old: 0.000000001
+                /*try {
                     Thread.sleep(0);
                   } catch (InterruptedException e) {
                     System.out.println("Fehler: " + e.getMessage());
                     Thread.currentThread().interrupt();
-                  }
+                  }*/
             }
             if(cars.get(0).section == sec.get(sec.size()-1) && cars.get(0).relPos == 1){
                 end = true;

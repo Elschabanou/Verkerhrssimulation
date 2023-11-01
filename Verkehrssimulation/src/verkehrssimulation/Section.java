@@ -4,6 +4,7 @@
  */
 package verkehrssimulation;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -20,11 +21,13 @@ public class Section {
     int maxSpeed;
     double length;
     public double offset;
+    public Color color;
 
-    public Section(int maxSpeed, double length, double offset) {
+    public Section(int maxSpeed, double length, double offset, Color color) {
         this.maxSpeed = maxSpeed;
         this.length = length;
         this.offset = offset;
+        this.color = color;
     }
 
     public int getmaxSpeed(){

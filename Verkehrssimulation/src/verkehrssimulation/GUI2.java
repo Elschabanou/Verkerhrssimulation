@@ -27,7 +27,7 @@ public class GUI2 {
 
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 400);
+        frame.setSize(1400, 800);
         cars = v.cars;
         sections = v.sec;
 
@@ -41,34 +41,70 @@ public class GUI2 {
                 g.setColor(Color.GREEN);
                 g.fillRect(0, 0, panelWidth, panelHeight);
 
-                int gesLength = 0;
-                double kDist = 50;
+                double kWidth = 2;
                 int offset = getWidth()*3/4;
+                double leftSpeed = cars.get(0).relPos*cars.get(0).section.length*getWidth()*kWidth;
 
-                for(int i=0; i<sections.size();i++){
-                    gesLength += sections.get(i).length*getWidth();
-                }
+                System.out.println(cars.get(3).distance);
 
                 g.setColor(Color.BLACK);
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 10);
 
                for (int i = 0; i < sections.size(); i++){
-                    if(i%2==0)g.setColor(Color.GRAY);
-                    else g.setColor(Color.LIGHT_GRAY);
-                    g.fillRect((int)((offset + sections.get(i).offset*getWidth()) - ((cars.get(0).relPos + v.getSectionNr(cars.get(0).section))/(sections.size()-1)*gesLength)), 
+                    if(i == v.getSectionNr(cars.get(0).section)){
+                        g.setColor(Color.BLACK);
+                        g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset) - (leftSpeed)), getHeight()/3 - 20);
+                        g.setColor(sections.get(i).color);
+                        g.fillRect((int)((offset) - (leftSpeed)), 
                         getHeight()/3, 
-                        (int)(sections.get(i).length*getWidth()), 
-                        getHeight()/5); //x Wert muss noch mit relPos angepasst werden um die Sections zu bewegen
-                        //System.out.print((int)(offset + sections.get(i).offset*getWidth()/5));
-                        System.out.print((cars.get(0).relPos + v.getSectionNr(cars.get(0).section))/(sections.size()-1));
-                        System.out.println(" " + (int)(sections.get(i).length*getWidth()/5));
+                        (int)(sections.get(i).length*getWidth()*kWidth), 
+                        getHeight()/5);
+                    }
+                    else if(i < v.getSectionNr(cars.get(0).section)){
+                        g.setColor(Color.BLACK);
+                        g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset - sections.get(i).length*getWidth()*kWidth) - (leftSpeed)), getHeight()/3 - 20);
+                        g.setColor(sections.get(i).color);
+                        g.fillRect((int)((offset - sections.get(i).length*getWidth()*kWidth) - (leftSpeed)), 
+                        getHeight()/3, 
+                        (int)(sections.get(i).length*getWidth()*kWidth), 
+                        getHeight()/5); 
+                    }
+                    else if(i > v.getSectionNr(cars.get(0).section)){
+                        g.setColor(Color.BLACK);
+                        g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset + cars.get(0).section.length*getWidth()*kWidth) - (leftSpeed)), getHeight()/3 - 20);
+                        g.setColor(sections.get(v.getSectionNr(v.getNewSection(cars.get(0).section))).color);
+                        g.fillRect((int)((offset + cars.get(0).section.length*getWidth()*kWidth) - (leftSpeed)), 
+                        getHeight()/3, 
+                        (int)(sections.get(i).length*getWidth()*kWidth), 
+                        getHeight()/5);
+                    }
+                        //System.out.print((int)((offset + sections.get(i).offset*getWidth()) - (leftSpeed)));
+                        //System.out.print((cars.get(0).relPos + v.getSectionNr(cars.get(0).section))/(sections.size()-1));
+                        //System.out.println(" " + (int)(sections.get(i).length*getWidth()));
                 }
+
+
+                double cOffset = 0;
 
                 for (int i = 0; i < cars.size(); i++) {
                     try {
+                        g.setColor(Color.BLACK);
                         BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
-                        if(i!=0) g.drawImage(image, (int)(offset - i * cars.get(i).distance/5*getWidth() * kDist), (int)(getHeight()/3+getHeight()/5*0.2), this);
-                        else g.drawImage(image, (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                        g.setFont(g.getFont().deriveFont(100.0f));
+                        if(i!=0){
+                            //g.drawImage(image, (int)(offset - i * cars.get(i).distance*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                            g.drawString(".", (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2));
+                            g.setFont(g.getFont().deriveFont(15.0f));
+                            g.drawString("Speed: " + (int)(cars.get(i).velocity), (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2) + 80);
+                        }else {
+                            //g.drawImage(image, (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                            g.drawString(".", (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2));
+                            g.setFont(g.getFont().deriveFont(15.0f));
+                            g.drawString("Speed: " + (int)(cars.get(i).velocity), (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2) + 80);
+                        }
+                        System.out.println(cOffset);
+                        if(i>0)cOffset += cars.get(i).distance;
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
