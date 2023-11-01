@@ -19,10 +19,12 @@ public class Section {
 
     int maxSpeed;
     double length;
+    public double offset;
 
-    public Section(int maxSpeed, double length){
+    public Section(int maxSpeed, double length, double offset) {
         this.maxSpeed = maxSpeed;
         this.length = length;
+        this.offset = offset;
     }
 
     public int getmaxSpeed(){

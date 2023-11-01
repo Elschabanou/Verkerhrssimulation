@@ -46,18 +46,22 @@ public class GUI2 {
                 int offset = getWidth()*3/4;
 
                 for(int i=0; i<sections.size();i++){
-                    gesLength += sections.get(i).length*getWidth()/5;
+                    gesLength += sections.get(i).length*getWidth();
                 }
 
                 g.setColor(Color.BLACK);
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 10);
 
-                for (int i = 0; i < sections.size(); i++) {
-                    g.setColor(Color.GRAY);
-                    /*g.fillRect(, 
+               for (int i = 0; i < sections.size(); i++){
+                    if(i%2==0)g.setColor(Color.GRAY);
+                    else g.setColor(Color.LIGHT_GRAY);
+                    g.fillRect((int)((offset + sections.get(i).offset*getWidth()) - ((cars.get(0).relPos + v.getSectionNr(cars.get(0).section))/(sections.size()-1)*gesLength)), 
                         getHeight()/3, 
-                        gesLength, 
-                        getHeight()/5);*/ //x Wert muss noch mit relPos angepasst werden um die Sections zu bewegen
+                        (int)(sections.get(i).length*getWidth()), 
+                        getHeight()/5); //x Wert muss noch mit relPos angepasst werden um die Sections zu bewegen
+                        //System.out.print((int)(offset + sections.get(i).offset*getWidth()/5));
+                        System.out.print((cars.get(0).relPos + v.getSectionNr(cars.get(0).section))/(sections.size()-1));
+                        System.out.println(" " + (int)(sections.get(i).length*getWidth()/5));
                 }
 
                 for (int i = 0; i < cars.size(); i++) {

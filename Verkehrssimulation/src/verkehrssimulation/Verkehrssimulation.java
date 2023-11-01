@@ -59,10 +59,10 @@ public class Verkehrssimulation {
     }
 
     public void makeSections(){
-        sec.add(new Section(100, 2));
-        sec.add(new Section(50,1));
-        sec.add(new Section(200, 5));
-        sec.add(new Section(60,2));
+        sec.add(new Section(100, 2, 0));
+        sec.add(new Section(50,1, 2));
+        sec.add(new Section(200, 5, 3));
+        sec.add(new Section(60,2, 8));
     }
 
 
