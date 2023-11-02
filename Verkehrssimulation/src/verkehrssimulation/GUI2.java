@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -178,11 +180,15 @@ public class GUI2 {
     }
 //String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v
     public void insertionFrame(){
+
         JFrame insCar = new JFrame("Insert Car");
 
         insCar.setSize(200, 350);
 
         JPanel panel = new JPanel();
+
+        String[] choicesColour = {"beige","blue","green","grey","white"};
+        String[] choicesName = {"Taycan","Taycan 4s","Taycan GTS","Taycan s"};
 
         JLabel name = new JLabel("Name: ");
         JLabel colour = new JLabel("Colour: ");
@@ -190,11 +196,47 @@ public class GUI2 {
         JLabel dcc = new JLabel("Maximal Decceleration: ");
         JLabel position = new JLabel("behind car number:");
 
-        JTextField na = new JTextField("Taycan GTS", 15);
-        JTextField co = new JTextField("green", 15);
-        JTextField ac = new JTextField("99000", 15);
-        JTextField dc = new JTextField("-100000", 15);
-        JTextField po = new JTextField("1", 15);
+        //JTextField na = new JTextField("Taycan GTS", 15);
+        final JComboBox<String> nam = new JComboBox<String>(choicesName);
+        final JComboBox<String> col = new JComboBox<String>(choicesColour);
+        //JTextField co = new JTextField("green", 15);
+        //JTextField ac = new JTextField("99000", 15);
+        JSlider a = new JSlider(90000,150000, 99000);
+        a.setMinorTickSpacing(1000);
+        a.setMajorTickSpacing(5000);
+        a.createStandardLabels(1000000);
+        a.setPaintTicks(true);
+        //a.setPaintLabels(true);
+        JLabel readAcc = new JLabel("Current Acceleration: " + a.getValue());
+
+        a.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int chosenA = a.getValue();
+                readAcc.setText("Acceleration: " + chosenA);
+            }
+        });
+
+        //JTextField dc = new JTextField("-100000", 15);
+        JSlider d = new JSlider(-150000,-80000,-100000);
+        d.setMinorTickSpacing(1000);
+        d.setMajorTickSpacing(5000);
+        d.createStandardLabels(1000000);
+        d.setPaintTicks(true);
+        //d.setPaintLabels(true);
+        JLabel readDcc = new JLabel("Current Decceleration: " + d.getValue());
+
+        d.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int chosenD = d.getValue();
+                readDcc.setText("Decceleration: " + chosenD);
+            }
+        });
+
+        //JTextField po = new JTextField("1", 15);
+        SpinnerModel p = new SpinnerNumberModel(1, 1, v.cars.size(),1);
+        JSpinner place = new JSpinner(p);
 
         JButton okay = new JButton("Okay");
         okay.setBounds(10,150, 50, 20);
@@ -203,27 +245,41 @@ public class GUI2 {
         okay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Section s = v.cars.get(0).section;
+                String nameOfCar = nam.toString();
+                String colourOfCar = col.toString();
+                int accOfCar = a.getValue();
+                int dccOfCar = d.getValue();
+                int posOfPrevCar = ((int) place.getValue())-1;
 
-                Car n = new Car("Taycan GTS","green",99000,-100000, s,v);
-                n.velocity = (v.cars.get(0).velocity + v.cars.get(1).velocity)/2;
+                Section s = v.cars.get(posOfPrevCar).section;
 
-                if(v.cars.get(0) != null){
-                    if(v.cars.get(0).section == v.cars.get(1).section){
-                        n.relPos = ((v.cars.get(0).relPos - v.cars.get(1).relPos)/2)+ v.cars.get(1).relPos;
+                Car n = new Car(nameOfCar,colourOfCar,accOfCar,-dccOfCar, s,v);
+
+                if(posOfPrevCar+1 == v.cars.size()){
+                    n.velocity = v.cars.get(posOfPrevCar).velocity;
+                }else {
+                    n.velocity = (v.cars.get(0).velocity + v.cars.get(1).velocity) / 2;
+                }
+
+                if(posOfPrevCar+1 != v.cars.size()){
+                    if(v.cars.get(posOfPrevCar).section == v.cars.get(posOfPrevCar+1).section){
+                        n.relPos = ((v.cars.get(posOfPrevCar).relPos - v.cars.get(posOfPrevCar+1).relPos)/2)+ v.cars.get(posOfPrevCar+1).relPos;
                     }else{
-                        if(v.cars.get(0).relPos > v.cars.get(1).relPos){
-                            n.relPos = v.cars.get(0).relPos - (((v.cars.get(0).relPos) + (1-v.cars.get(1).relPos))/2);
-                            n.section = v.cars.get(0).section;
+                        if(v.cars.get(posOfPrevCar).relPos > v.cars.get(posOfPrevCar+1).relPos){
+                            n.relPos = v.cars.get(posOfPrevCar).relPos - (((v.cars.get(posOfPrevCar).relPos) + (1-v.cars.get(posOfPrevCar+1).relPos))/2);
+                            n.section = v.cars.get(posOfPrevCar).section;
                         }else{
-                            n.relPos = ((v.cars.get(0).relPos + (1-v.cars.get(1).relPos))/2) + v.cars.get(1).relPos;
-                            n.section = v.cars.get(1).section;
+                            n.relPos = ((v.cars.get(posOfPrevCar).relPos + (1-v.cars.get(posOfPrevCar+1).relPos))/2) + v.cars.get(posOfPrevCar+1).relPos;
+                            n.section = v.cars.get(posOfPrevCar+1).section;
                         }
 
                     }
+                }else{
+                    double dis = v.cars.get(posOfPrevCar).velocity/2;
+                    n.relPos = v.cars.get(posOfPrevCar).relPos - (dis / v.cars.get(posOfPrevCar).section.getlength());
                 }
 
-                v.insertCar(1, n);
+                v.insertCar(posOfPrevCar, n);
 
                 cars = v.cars;
             }
@@ -231,15 +287,17 @@ public class GUI2 {
 
 
         panel.add(name);
-        panel.add(na);
+        panel.add(nam);
         panel.add(colour);
-        panel.add(co);
+        panel.add(col);
         panel.add(acc);
-        panel.add(ac);
+        panel.add(a);
+        panel.add(readAcc);
         panel.add(dcc);
-        panel.add(dc);
+        panel.add(d);
+        panel.add(readDcc);
         panel.add(position);
-        panel.add(po);
+        panel.add(place);
 
         panel.add(okay);
 
