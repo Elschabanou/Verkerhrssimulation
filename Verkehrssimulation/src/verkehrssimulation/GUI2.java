@@ -48,7 +48,7 @@ public class GUI2 {
         });
 
         JButton buttonInsert = new JButton("insert new Car");
-        /*buttonInsert.setBounds(10,100, 50, 20);
+        buttonInsert.setBounds(10,100, 50, 20);
         buttonInsert.setVisible(true);
         buttonInsert.addActionListener(new ActionListener() {
             @Override
@@ -56,7 +56,7 @@ public class GUI2 {
                 insertionFrame();
 
             }
-        });*/
+        });
 
         JPanel drawingPanel = new JPanel() {
             @Override
@@ -80,7 +80,7 @@ public class GUI2 {
 
                 
                 add(buttonBreak);
-                //add(buttonInsert);
+                add(buttonInsert);
 
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
@@ -132,6 +132,7 @@ public class GUI2 {
                         g.setFont(g.getFont().deriveFont(50.0f));
                         g.setColor(Color.RED);
                         g.drawString("CRASH!", getWidth()/2, getHeight()/4);
+                        cars.get(i).relPos = cars.get(i-1).relPos - 0.007/cars.get(i).section.length;
                         //cars.get(i).relPos = cars.get(i-1).relPos - 30/getWidth()/kWidth;
                     }
                     try {
