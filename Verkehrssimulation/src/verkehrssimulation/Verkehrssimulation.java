@@ -79,7 +79,7 @@ public class Verkehrssimulation {
         sec.add(new Section(50, 0.1, Color.GRAY));
         sec.add(new Section(200,0.9, Color.LIGHT_GRAY));
         sec.add(new Section(30, 0.1, Color.GRAY));
-        sec.add(new Section(600, 2, Color.LIGHT_GRAY));
+        sec.add(new Section(600, 4, Color.LIGHT_GRAY));
         sec.add(new Section(30,0.1, Color.GRAY));
         sec.add(new Section(100, 0.5, Color.LIGHT_GRAY));
         sec.add(new Section(60,0.1, Color.GRAY));

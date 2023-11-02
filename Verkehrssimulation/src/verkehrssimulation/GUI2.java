@@ -86,7 +86,7 @@ public class GUI2 {
 
                 
                 add(buttonBreak);
-                add(buttonInsert);
+                //add(buttonInsert);
 
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
@@ -95,15 +95,21 @@ public class GUI2 {
                     System.out.println(e);
                 }*/
 
-                int[] xOffsets = {-700, -300, 150, -250, -500, 200};
-                int[] yOffsets = {20, 70, 50, 350, 450, 375};
+                int[] xOffsets = {-800, -300, 150, -250, -600, 200};
+                int[] yOffsets = {120, 70, 50, 350, 400, 375};
+                String [] imgNames = {"1", "4", "2", "5", "4", "5"};
                 for(int i=0; i<6; i++){
-                    if(cars.get(0).section != prevSec){
-                        prevSec = cars.get(0).section;
-                        for(int l=0; l<6; l++){bOffset[l] -= prevLeftSpeed;}
-                    }if((int)(bOffset[i] - leftSpeed)+xOffsets[i]<-100) bOffset[i] = (int)(getWidth()+leftSpeed + 5)-xOffsets[i];
-                    g.setColor(Color.BLACK);
-                    g.fillRect((int)(bOffset[i] - leftSpeed)+xOffsets[i], yOffsets[i], 20, 50);
+                    try{
+                        BufferedImage img = ImageIO.read(GUI2.class.getResource("images/tree_" + imgNames[i] + ".png"));
+                        if(cars.get(0).section != prevSec){
+                            prevSec = cars.get(0).section;
+                            for(int l=0; l<6; l++){bOffset[l] -= prevLeftSpeed;}
+                        }if((int)(bOffset[i] - leftSpeed)+xOffsets[i]<-100) bOffset[i] = (int)(getWidth()+leftSpeed + 5)-xOffsets[i];
+                        g.setColor(Color.BLACK);
+                        g.drawImage(img, (int)(bOffset[i] - leftSpeed)+xOffsets[i], yOffsets[i], this);
+                    }catch(IOException e){
+                        System.out.println(e);
+                    }
                 }
 
                 for (int i = 0; i < sections.size(); i++){
