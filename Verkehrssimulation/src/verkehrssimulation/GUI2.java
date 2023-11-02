@@ -132,6 +132,7 @@ public class GUI2 {
                         g.setFont(g.getFont().deriveFont(50.0f));
                         g.setColor(Color.RED);
                         g.drawString("CRASH!", getWidth()/2, getHeight()/4);
+                        cars.get(i).velocity = 0;
                         cars.get(i).relPos = cars.get(i-1).relPos - 0.007/cars.get(i).section.length;
                         //cars.get(i).relPos = cars.get(i-1).relPos - 30/getWidth()/kWidth;
                     }
