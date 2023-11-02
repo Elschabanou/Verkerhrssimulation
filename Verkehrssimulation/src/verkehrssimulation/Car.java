@@ -63,7 +63,7 @@ public class Car {
             nextSpeed = section.maxSpeed;
         }
 
-        brakingDist = (velocity/10)*(velocity/10) - (nextSpeed/8)*(nextSpeed/8);
+        brakingDist = (velocity/10)*(velocity/10) - (nextSpeed/9)*(nextSpeed/9);
         //System.out.println(brakingDist);
         
         if((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed)){

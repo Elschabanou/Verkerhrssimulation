@@ -49,10 +49,10 @@ public class Verkehrssimulation {
     
     
     private void makeCars(){
-        cars.add(new Car("Taycan 4s","white",150000,-150000, sec.get(0),this));
-        cars.add(new Car("Taycan s","grey",91000,-100000, sec.get(0),this));
-        cars.add(new Car("Taycan GTS","green",91000,-100000, sec.get(0),this));
-        cars.add(new Car("Taycan","beige",91000,-100000, sec.get(0),this));
+        cars.add(new Car("Taycan 4s","white",91000,-150000, sec.get(0),this));
+        cars.add(new Car("Taycan s","grey",150000,-80000, sec.get(0),this));
+        cars.add(new Car("Taycan GTS","green",91000,-80000, sec.get(0),this));
+        cars.add(new Car("Taycan","beige",91000,-80000, sec.get(0),this));
         cars.add(new Car("Taycan 4s","white",91000,-120000, sec.get(0),this));
         cars.add(new Car("Taycan s","blue",91000,-120000, sec.get(0),this));
         cars.add(new Car("Taycan GTS","green",91000,-90000, sec.get(0),this));
