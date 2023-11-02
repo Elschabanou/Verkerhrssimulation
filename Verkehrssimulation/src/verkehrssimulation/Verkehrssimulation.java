@@ -120,7 +120,7 @@ public class Verkehrssimulation {
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
-                end = !cars.get(i).update(0.00000000005); //realtime: 0.000000000018
+                end = !cars.get(i).update(0.00000000005); //realtime (mac): 0.00000000005
                 /*try {
                     Thread.sleep(0);
                   } catch (InterruptedException e) {
