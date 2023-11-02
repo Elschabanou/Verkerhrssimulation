@@ -137,6 +137,6 @@ public class Verkehrssimulation {
 
     public void insertCar(int insert, Car n){
         //Section s = cars.get(0).section;
-        cars.add(1, n);
+        cars.add(insert, n);
     }
 }

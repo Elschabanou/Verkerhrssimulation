@@ -34,7 +34,9 @@ public class Car {
     double brakingDist = 0;
     public boolean eBreak = false;
     public String filepath;
-    
+    public double nextSpeed;
+
+
     public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
         this.colour = colour;
@@ -43,8 +45,8 @@ public class Car {
         this.section = section;
         this.v = v;
         this.regler = new PI_Regler(0.000005, 0.000000000005);
-        //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner desto langsamer)
-        // ki: wie stark schwank er nach oben aus
+        //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner, desto langsamer)
+        // ki: wie stark schwankt er nach oben aus
     }
 
     public static void main(String[] args){
@@ -68,7 +70,6 @@ public class Car {
             }
         }else distance = 10;
 
-        double nextSpeed;
         try{
             nextSpeed = v.getNewSection(section).maxSpeed;
         }catch(Exception e){

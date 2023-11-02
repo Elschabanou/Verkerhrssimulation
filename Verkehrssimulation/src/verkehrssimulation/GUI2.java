@@ -178,7 +178,7 @@ public class GUI2 {
 
         frame.setVisible(true);
     }
-//String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v
+
     public void insertionFrame(){
 
         JFrame insCar = new JFrame("Insert Car");
@@ -245,22 +245,36 @@ public class GUI2 {
         okay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nameOfCar = nam.toString();
-                String colourOfCar = col.toString();
-                int accOfCar = a.getValue();
-                int dccOfCar = d.getValue();
+                String nameOfCar = (String) nam.getSelectedItem();
+                String colourOfCar = (String) col.getSelectedItem();
+                double accOfCar = a.getValue();
+                double dccOfCar = d.getValue();
+                if(dccOfCar>0){
+                    dccOfCar = -dccOfCar;
+                }
                 int posOfPrevCar = ((int) place.getValue())-1;
+
+                System.out.println("name des Autos: "+ nameOfCar);
+                System.out.println("farbe des Autos: "+ colourOfCar);
+                System.out.println("Beschleunigung: "+accOfCar);
+                System.out.println("Entschleunigung: "+dccOfCar);
+                System.out.println("PosOFPrevCar in Array als Index: " + posOfPrevCar);
 
                 Section s = v.cars.get(posOfPrevCar).section;
 
-                Car n = new Car(nameOfCar,colourOfCar,accOfCar,-dccOfCar, s,v);
+                Car n = new Car(nameOfCar,colourOfCar,accOfCar, dccOfCar, s,v);
 
+                /* Wenn Auto an letzter Stelle hat es anfangs die gleiche Geschwindigkeit wie das vorherige,
+                 * ansonsten hat das neue Auto die durchschnittliche Anfangsgeschwindigkeit von den beiden Autos vor und
+                 * hinter ihm
+                 */
                 if(posOfPrevCar+1 == v.cars.size()){
                     n.velocity = v.cars.get(posOfPrevCar).velocity;
                 }else {
                     n.velocity = (v.cars.get(0).velocity + v.cars.get(1).velocity) / 2;
                 }
 
+                //if-Abfrage true, wenn das Auto nicht an letzter Stelle eingefügt wird
                 if(posOfPrevCar+1 != v.cars.size()){
                     if(v.cars.get(posOfPrevCar).section == v.cars.get(posOfPrevCar+1).section){
                         n.relPos = ((v.cars.get(posOfPrevCar).relPos - v.cars.get(posOfPrevCar+1).relPos)/2)+ v.cars.get(posOfPrevCar+1).relPos;
@@ -268,9 +282,11 @@ public class GUI2 {
                         if(v.cars.get(posOfPrevCar).relPos > v.cars.get(posOfPrevCar+1).relPos){
                             n.relPos = v.cars.get(posOfPrevCar).relPos - (((v.cars.get(posOfPrevCar).relPos) + (1-v.cars.get(posOfPrevCar+1).relPos))/2);
                             n.section = v.cars.get(posOfPrevCar).section;
+                            //n.nextSpeed = n.section.maxSpeed;
                         }else{
                             n.relPos = ((v.cars.get(posOfPrevCar).relPos + (1-v.cars.get(posOfPrevCar+1).relPos))/2) + v.cars.get(posOfPrevCar+1).relPos;
                             n.section = v.cars.get(posOfPrevCar+1).section;
+                            //n.nextSpeed = n.section.maxSpeed;
                         }
 
                     }
@@ -279,9 +295,18 @@ public class GUI2 {
                     n.relPos = v.cars.get(posOfPrevCar).relPos - (dis / v.cars.get(posOfPrevCar).section.getlength());
                 }
 
-                v.insertCar(posOfPrevCar, n);
+                v.insertCar(posOfPrevCar+1, n);
 
                 cars = v.cars;
+
+                System.out.println("Maximales Speed in dieser Section: " + n.section.getmaxSpeed());
+
+                for(int i = 0; i < v.cars.size(); i++){
+                    System.out.println(i + " Farbe: " +v.cars.get(i).colour + " Geschw: " +v.cars.get(i).velocity + " maxDcc: " + v.cars.get(i).maxDcc);
+                }
+                for(int i = 0; i < cars.size(); i++){
+                    System.out.println(i + " Farbe: " +cars.get(i).colour + " Geschw: " +cars.get(i).velocity);
+                }
             }
         });
 
