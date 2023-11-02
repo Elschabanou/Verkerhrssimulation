@@ -48,7 +48,7 @@ public class GUI2 {
         });
 
         JButton buttonInsert = new JButton("insert new Car");
-        buttonInsert.setBounds(10,100, 50, 20);
+        /*buttonInsert.setBounds(10,100, 50, 20);
         buttonInsert.setVisible(true);
         buttonInsert.addActionListener(new ActionListener() {
             @Override
@@ -56,7 +56,7 @@ public class GUI2 {
                 insertionFrame();
 
             }
-        });
+        });*/
 
         JPanel drawingPanel = new JPanel() {
             @Override
@@ -80,7 +80,7 @@ public class GUI2 {
 
                 
                 add(buttonBreak);
-                add(buttonInsert);
+                //add(buttonInsert);
 
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
