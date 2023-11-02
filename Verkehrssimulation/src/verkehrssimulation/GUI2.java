@@ -40,12 +40,7 @@ public class GUI2 {
                 //g.setColor(Color.decode("#7aad55"));
                 //g.fillRect(0, 0, panelWidth, panelHeight);
                 
-                try{
-                BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
-                g.drawImage(background, 0, 0, this);
-                } catch(IOException e){
-                    System.out.println(e);
-                }
+                
 
                 double kWidth = 3;
                 double kHeight = 2.3;
@@ -57,6 +52,14 @@ public class GUI2 {
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
 
                for (int i = 0; i < sections.size(); i++){
+                   
+                   try{
+                    BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
+                    g.drawImage(background, (int)((offset - sections.get(i).length*getWidth()*kWidth) - (leftSpeed)), 0, this);
+                    } catch(IOException e){
+                        System.out.println(e);
+                    }
+                   
                     if(i == v.getSectionNr(cars.get(0).section)){
                         g.setColor(Color.WHITE);
                         g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset) - (leftSpeed)), getHeight()/3 - 20);
