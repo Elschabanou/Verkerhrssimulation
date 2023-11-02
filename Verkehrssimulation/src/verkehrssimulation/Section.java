@@ -20,13 +20,11 @@ public class Section {
 
     int maxSpeed;
     double length;
-    public double offset;
     public Color color;
 
-    public Section(int maxSpeed, double length, double offset, Color color) {
+    public Section(int maxSpeed, double length, Color color) {
         this.maxSpeed = maxSpeed;
         this.length = length;
-        this.offset = offset;
         this.color = color;
     }
 

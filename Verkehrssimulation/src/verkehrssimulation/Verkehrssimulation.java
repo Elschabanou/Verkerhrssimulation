@@ -60,10 +60,13 @@ public class Verkehrssimulation {
     }
 
     public void makeSections(){
-        sec.add(new Section(50, 0.25, 0, Color.GRAY));
-        sec.add(new Section(200,0.8, 2, Color.RED));
-        sec.add(new Section(20, 2, 3, Color.GRAY));
-        sec.add(new Section(60,2, 8, Color.LIGHT_GRAY));
+        sec.add(new Section(50, 0.25, Color.GRAY));
+        sec.add(new Section(200,0.8, Color.LIGHT_GRAY));
+        sec.add(new Section(20, 0.1, Color.GRAY));
+        sec.add(new Section(600, 2, Color.LIGHT_GRAY));
+        sec.add(new Section(10,0.1, Color.GRAY));
+        sec.add(new Section(100, 0.5, Color.LIGHT_GRAY));
+        sec.add(new Section(60,2, Color.GRAY));
     }
 
 
@@ -100,7 +103,7 @@ public class Verkehrssimulation {
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
-                cars.get(i).update(0.000000000015); //old: 0.000000001
+                cars.get(i).update(0.000000000018); //old: 0.000000001
                 /*try {
                     Thread.sleep(0);
                   } catch (InterruptedException e) {
