@@ -27,20 +27,57 @@ public class GUI2 {
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1400, 580);
-        
+
         cars = v.cars;
         sections = v.sec;
+
 
         JButton buttonBreak = new JButton("Emergency Break");
         buttonBreak.setBounds(10, 50, 150, 20);
         buttonBreak.addMouseListener(new MouseAdapter(){
             @Override
-            public void mousePressed(MouseEvent e){ 
+            public void mousePressed(MouseEvent e){
                 cars.get(0).eBreak = true;
             }
             @Override
             public void mouseReleased(MouseEvent e){
                 cars.get(0).eBreak = false;
+            }
+        });
+
+        JButton buttonInsert = new JButton("insert new Car");
+        buttonInsert.setBounds(10,100, 50, 20);
+        buttonInsert.setVisible(true);
+        buttonInsert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Section s = v.cars.get(0).section;
+                double speed;
+
+                speed = s.maxSpeed/1.5;
+
+                Car n = new Car("Taycan GTS","green",99000,-100000, s,v);
+                n.velocity = v.cars.get(0).velocity;
+
+                if(v.cars.get(0) != null){
+                    if(v.cars.get(0).section == v.cars.get(1).section){
+                        n.relPos = ((v.cars.get(0).relPos - v.cars.get(1).relPos)/2)+ v.cars.get(1).relPos;
+                    }else{
+                        if(v.cars.get(0).relPos > v.cars.get(1).relPos){
+                            n.relPos = v.cars.get(0).relPos - (((v.cars.get(0).relPos) + (1-v.cars.get(1).relPos))/2);
+                            n.section = v.cars.get(0).section;
+                        }else{
+                            n.relPos = ((v.cars.get(0).relPos + (1-v.cars.get(1).relPos))/2) + v.cars.get(1).relPos;
+                            n.section = v.cars.get(1).section;
+                        }
+
+                    }
+                }
+
+                v.insertCar(1, n);
+
+                cars = v.cars;
             }
         });
 
@@ -65,8 +102,9 @@ public class GUI2 {
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
 
                 
-                add(buttonBreak);         
-                   
+                add(buttonBreak);
+                add(buttonInsert);
+
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
                     g.drawImage(background, (int)((offset - sections.get(0).length*getWidth()*kWidth) - (leftSpeed)), 0, this);
@@ -148,7 +186,7 @@ public class GUI2 {
                 }
             }
         };
-        
+
         frame.add(drawingPanel);
 
 
