@@ -16,6 +16,7 @@ public class GUI2 {
     private ArrayList<Car> cars = new ArrayList<Car>();
     private ArrayList<Section> sections = new ArrayList<Section>();
     private Verkehrssimulation v;
+    boolean start = true;
 
     public void updateGUI(ArrayList<Car> cars) {
     }
@@ -112,11 +113,11 @@ public class GUI2 {
                 
 
                 for (int i = 0; i < cars.size(); i++) {
-                    if(cars.get(i).distance <= 0){
+                    if(cars.get(i).distance*getWidth()*kWidth <= 30 && v.getSectionNr(cars.get(i).section) != 0){
                         g.setFont(g.getFont().deriveFont(50.0f));
                         g.setColor(Color.RED);
                         g.drawString("CRASH!", getWidth()/2, getHeight()/4);
-                        cars.get(i).relPos = cars.get(i-1).relPos;
+                        //cars.get(i).relPos = cars.get(i-1).relPos - 30/getWidth()/kWidth;
                     }
                     try {
                         g.setColor(Color.WHITE);
