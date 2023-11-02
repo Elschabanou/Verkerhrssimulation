@@ -92,15 +92,16 @@ public class GUI2 {
                         BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
                         g.setFont(g.getFont().deriveFont(100.0f));
                         if(i!=0){
-                            //g.drawImage(image, (int)(offset - i * cars.get(i).distance*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                            g.drawImage(image, (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), this);
                             //g.drawString(".", (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2));
-                            g.drawRect((int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
+                            //g.drawRect((int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
                             g.setFont(g.getFont().deriveFont(15.0f));
                             g.drawString(/* "Speed: " +*/ String.valueOf((int)(cars.get(i).velocity)), (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2) + 80);
                         }else {
-                            //g.drawImage(image, (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                            g.drawImage(image, (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), this);
                             //g.drawString(".", (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2));
-                            g.drawRect((int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
+                            
+                            //g.drawRect((int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
                             g.setFont(g.getFont().deriveFont(15.0f));
                             g.drawString(/* "Speed: " +*/ String.valueOf((int)(cars.get(i).velocity)), (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2) + 80);
                         }
