@@ -7,6 +7,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 import java.io.File;
+import java.net.URL;
+
 
 /**
  *
@@ -31,7 +33,8 @@ public class Car {
     double lastTime = 0;
     double brakingDist = 0;
     public boolean eBreak = false;
-
+    public String filepath;
+    
     public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
         this.colour = colour;
@@ -107,13 +110,20 @@ public class Car {
         return true;
     }
     
-    private static void playSound(String filePath) {
+    public static void playSound(String filePath) {
         try {
-            File soundFile = new File(filePath);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
+            
+            URL resourceUrl = Car.class.getResource(filePath);
 
-            clip.addLineListener(new LineListener() {
+            if (resourceUrl != null) {
+                String Path = resourceUrl.getFile();
+                System.out.println("Dateipfad der WAV-Datei: " + Path);
+                File soundFile = new File(Path);
+
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+                Clip clip = AudioSystem.getClip();
+            
+                clip.addLineListener(new LineListener() {
                 @Override
                 public void update(LineEvent event) {
                     if (event.getType() == LineEvent.Type.STOP) {
@@ -121,12 +131,25 @@ public class Car {
                     }
                 }
             });
-
+            
             clip.open(audioInputStream);
             clip.start();
+            
+            
+            } else {
+                System.out.println("Die WAV-Datei wurde nicht gefunden.");
+            }
+            
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+
+  
+   
+
 
