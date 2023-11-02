@@ -36,6 +36,18 @@ public class Verkehrssimulation {
         run();
     }
 
+    /* 
+    available colours:
+    
+    ⚪ "white"
+    ⚪ "green"
+    ⚪ "blue"
+    ⚪ "grey"
+    ⚪ "beige"    
+    
+    */
+    
+    
     private void makeCars(){
         cars.add(new Car("Taycan 4s","white",150000,-150000, sec.get(0),this));
         cars.add(new Car("Taycan s","blue",91000,-100000, sec.get(0),this));
