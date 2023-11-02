@@ -31,7 +31,9 @@ public class Car {
         this.maxDcc = maxDcc;
         this.section = section;
         this.v = v;
-        this.regler = new PI_Regler(0.000005, 0.000000000005); //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner desto langsamer)  |  ki: wie stark schwank er nach oben aus
+        this.regler = new PI_Regler(0.000005, 0.000000000005);
+        //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner desto langsamer)
+        // ki: wie stark schwank er nach oben aus
     }
 
     public static void main(String[] args){
@@ -42,7 +44,6 @@ public class Car {
 
         double controlSignal = regler.calculate(setpoint, acceleration, timeStep);
         acceleration += controlSignal;
-        //System.out.println(acceleration);
     }
 
     void calcAcceleration(double timeStep){
@@ -64,19 +65,12 @@ public class Car {
         }
 
         brakingDist = (velocity/10)*(velocity/10) - (nextSpeed/9)*(nextSpeed/9);
-        //System.out.println(brakingDist);
         
         if((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed)){
-            //acceleration = maxDcc;
-            //regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc, timeStep);
         }else if((distance*1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
-            //acceleration = maxAcc;
-            //regler.setParameters(0.2, 0.0005);
             updateAcceleration(maxAcc, timeStep);
         }else{
-            //acceleration = 0;
-            //regler.setParameters(0.5, 0.0005);
             updateAcceleration(0.0, timeStep);
         }
 
