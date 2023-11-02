@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 
 
@@ -87,17 +86,12 @@ public class GUI2 {
 
                 double cOffset = 0;
                 
-                List<String> car_color = new ArrayList<>();
-                car_color.add("images/Taycan_Topview_white_small.png");
-                car_color.add("images/Taycan_Topview_blue_small.png");
-                car_color.add("images/Taycan_Topview_green_small.png");
-                car_color.add("images/Taycan_Topview_beige_small.png");
 
                 for (int i = 0; i < cars.size(); i++) {
                     try {
                         g.setColor(Color.BLACK);
                         
-                        BufferedImage image = ImageIO.read(GUI2.class.getResource(car_color.get(i)));
+                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview" + cars.get(i).colour + "small.png"));
                         
                         g.setFont(g.getFont().deriveFont(100.0f));
                         if(i!=0){
