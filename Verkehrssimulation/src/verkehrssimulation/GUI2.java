@@ -31,12 +31,17 @@ public class GUI2 {
         sections = v.sec;
 
         JButton buttonBreak = new JButton("Emergency Break");
-        buttonBreak.setBounds(10, 50, 50, 20);
-        buttonBreak.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent e) { 
-              ;
-            } 
-          } );
+        buttonBreak.setBounds(10, 50, 150, 20);
+        buttonBreak.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e) { 
+                cars.get(0).eBreak = true;
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                cars.get(0).eBreak = false;
+            }
+        });
 
         JPanel drawingPanel = new JPanel() {
             @Override
@@ -59,6 +64,7 @@ public class GUI2 {
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
 
                 
+                add(buttonBreak);         
                    
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
@@ -135,7 +141,7 @@ public class GUI2 {
                 }
             }
         };
-
+        
         frame.add(drawingPanel);
 
 
