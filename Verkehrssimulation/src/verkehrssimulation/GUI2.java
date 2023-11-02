@@ -91,7 +91,7 @@ public class GUI2 {
                     try {
                         g.setColor(Color.BLACK);
                         
-                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview" + cars.get(i).colour + "small.png"));
+                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_" + cars.get(i).colour + "_small.png"));
                         
                         g.setFont(g.getFont().deriveFont(100.0f));
                         if(i!=0){
