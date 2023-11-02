@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -38,7 +39,7 @@ public class GUI2 {
                 int panelWidth = getWidth();
                 int panelHeight = getHeight();
 
-                g.setColor(Color.GREEN);
+                g.setColor(Color.decode("#7aad55"));
                 g.fillRect(0, 0, panelWidth, panelHeight);
 
                 double kWidth = 3;
@@ -85,13 +86,22 @@ public class GUI2 {
 
 
                 double cOffset = 0;
+                
+                List<String> car_color = new ArrayList<>();
+                car_color.add("images/Taycan_Topview_white_small.png");
+                car_color.add("images/Taycan_Topview_blue_small.png");
+                car_color.add("images/Taycan_Topview_green_small.png");
+                car_color.add("images/Taycan_Topview_beige_small.png");
 
                 for (int i = 0; i < cars.size(); i++) {
                     try {
                         g.setColor(Color.BLACK);
-                        BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
+                        
+                        BufferedImage image = ImageIO.read(GUI2.class.getResource(car_color.get(i)));
+                        
                         g.setFont(g.getFont().deriveFont(100.0f));
                         if(i!=0){
+                            
                             g.drawImage(image, (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), this);
                             //g.drawString(".", (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2));
                             //g.drawRect((int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
