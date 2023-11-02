@@ -34,11 +34,11 @@ public class GUI2 {
         buttonBreak.setBounds(10, 50, 150, 20);
         buttonBreak.addMouseListener(new MouseAdapter(){
             @Override
-            public void mousePressed(MouseEvent e) { 
+            public void mousePressed(MouseEvent e){ 
                 cars.get(0).eBreak = true;
             }
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseReleased(MouseEvent e){
                 cars.get(0).eBreak = false;
             }
         });
@@ -73,7 +73,7 @@ public class GUI2 {
                     System.out.println(e);
                 }*/
 
-               for (int i = 0; i < sections.size(); i++){
+                for (int i = 0; i < sections.size(); i++){
                    
                     if(i == v.getSectionNr(cars.get(0).section)){
                         g.setColor(Color.WHITE);
@@ -112,6 +112,12 @@ public class GUI2 {
                 
 
                 for (int i = 0; i < cars.size(); i++) {
+                    if(cars.get(i).distance <= 0){
+                        g.setFont(g.getFont().deriveFont(50.0f));
+                        g.setColor(Color.RED);
+                        g.drawString("CRASH!", getWidth()/2, getHeight()/4);
+                        cars.get(i).relPos = cars.get(i-1).relPos;
+                    }
                     try {
                         g.setColor(Color.WHITE);
                         
