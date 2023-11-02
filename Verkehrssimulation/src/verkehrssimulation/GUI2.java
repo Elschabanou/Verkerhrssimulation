@@ -51,33 +51,8 @@ public class GUI2 {
         buttonInsert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                insertionFrame();
 
-                Section s = v.cars.get(0).section;
-                double speed;
-
-                speed = s.maxSpeed/1.5;
-
-                Car n = new Car("Taycan GTS","green",99000,-100000, s,v);
-                n.velocity = v.cars.get(0).velocity;
-
-                if(v.cars.get(0) != null){
-                    if(v.cars.get(0).section == v.cars.get(1).section){
-                        n.relPos = ((v.cars.get(0).relPos - v.cars.get(1).relPos)/2)+ v.cars.get(1).relPos;
-                    }else{
-                        if(v.cars.get(0).relPos > v.cars.get(1).relPos){
-                            n.relPos = v.cars.get(0).relPos - (((v.cars.get(0).relPos) + (1-v.cars.get(1).relPos))/2);
-                            n.section = v.cars.get(0).section;
-                        }else{
-                            n.relPos = ((v.cars.get(0).relPos + (1-v.cars.get(1).relPos))/2) + v.cars.get(1).relPos;
-                            n.section = v.cars.get(1).section;
-                        }
-
-                    }
-                }
-
-                v.insertCar(1, n);
-
-                cars = v.cars;
             }
         });
 
@@ -200,6 +175,77 @@ public class GUI2 {
         timer.start();
 
         frame.setVisible(true);
+    }
+//String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v
+    public void insertionFrame(){
+        JFrame insCar = new JFrame("Insert Car");
+
+        insCar.setSize(200, 350);
+
+        JPanel panel = new JPanel();
+
+        JLabel name = new JLabel("Name: ");
+        JLabel colour = new JLabel("Colour: ");
+        JLabel acc = new JLabel("Maximal Acceleration: ");
+        JLabel dcc = new JLabel("Maximal Decceleration: ");
+        JLabel position = new JLabel("behind car number:");
+
+        JTextField na = new JTextField("Taycan GTS", 15);
+        JTextField co = new JTextField("green", 15);
+        JTextField ac = new JTextField("99000", 15);
+        JTextField dc = new JTextField("-100000", 15);
+        JTextField po = new JTextField("1", 15);
+
+        JButton okay = new JButton("Okay");
+        okay.setBounds(10,150, 50, 20);
+        okay.setVisible(true);
+
+        okay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Section s = v.cars.get(0).section;
+
+                Car n = new Car("Taycan GTS","green",99000,-100000, s,v);
+                n.velocity = (v.cars.get(0).velocity + v.cars.get(1).velocity)/2;
+
+                if(v.cars.get(0) != null){
+                    if(v.cars.get(0).section == v.cars.get(1).section){
+                        n.relPos = ((v.cars.get(0).relPos - v.cars.get(1).relPos)/2)+ v.cars.get(1).relPos;
+                    }else{
+                        if(v.cars.get(0).relPos > v.cars.get(1).relPos){
+                            n.relPos = v.cars.get(0).relPos - (((v.cars.get(0).relPos) + (1-v.cars.get(1).relPos))/2);
+                            n.section = v.cars.get(0).section;
+                        }else{
+                            n.relPos = ((v.cars.get(0).relPos + (1-v.cars.get(1).relPos))/2) + v.cars.get(1).relPos;
+                            n.section = v.cars.get(1).section;
+                        }
+
+                    }
+                }
+
+                v.insertCar(1, n);
+
+                cars = v.cars;
+            }
+        });
+
+
+        panel.add(name);
+        panel.add(na);
+        panel.add(colour);
+        panel.add(co);
+        panel.add(acc);
+        panel.add(ac);
+        panel.add(dcc);
+        panel.add(dc);
+        panel.add(position);
+        panel.add(po);
+
+        panel.add(okay);
+
+        insCar.add(panel);
+        insCar.setVisible(true);
+
     }
 
     public GUI2(Verkehrssimulation ve){
