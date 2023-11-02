@@ -6,8 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 
@@ -27,8 +26,17 @@ public class GUI2 {
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1400, 580);
+        
         cars = v.cars;
         sections = v.sec;
+
+        JButton buttonBreak = new JButton("Emergency Break");
+        buttonBreak.setBounds(10, 50, 50, 20);
+        buttonBreak.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+              ;
+            } 
+          } );
 
         JPanel drawingPanel = new JPanel() {
             @Override
