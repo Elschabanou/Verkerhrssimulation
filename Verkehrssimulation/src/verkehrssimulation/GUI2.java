@@ -16,7 +16,6 @@ public class GUI2 {
     private static final int ANIMATION_DELAY = 10;
     private ArrayList<Car> cars = new ArrayList<Car>();
     private ArrayList<Section> sections = new ArrayList<Section>();
-    private BufferedImage carImage;
     private Verkehrssimulation v;
 
     public void updateGUI(ArrayList<Car> cars) {
@@ -121,11 +120,6 @@ public class GUI2 {
 
         frame.add(drawingPanel);
 
-        try {
-            carImage = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_white_small.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         Timer timer = new Timer(ANIMATION_DELAY, new ActionListener() {
             @Override
