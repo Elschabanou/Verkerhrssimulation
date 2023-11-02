@@ -56,10 +56,17 @@ public class Car {
             }
         }else distance = 10;
 
-        brakingDist = (velocity/10)*(velocity/10) - (v.getNewSection(section).maxSpeed/10)*(v.getNewSection(section).maxSpeed/10);
+        double nextSpeed;
+        try{
+            nextSpeed = v.getNewSection(section).maxSpeed;
+        }catch(Exception e){
+            nextSpeed = section.maxSpeed;
+        }
+
+        brakingDist = (velocity/10)*(velocity/10) - (nextSpeed/8)*(nextSpeed/8);
         //System.out.println(brakingDist);
         
-        if((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > v.getNewSection(section).maxSpeed)){
+        if((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed)){
             //acceleration = maxDcc;
             //regler.setParameters(0.4, 0.01);
             updateAcceleration(maxDcc, timeStep);
@@ -85,13 +92,17 @@ public class Car {
         }
     }
 
-    void update(double timeStep){
+    boolean update(double timeStep){
         if(relPos >= 1){
             section = v.getNewSection(section);
+            if(section == null){
+                return false;
+            }
             relPos = 0;
         }
         calcAcceleration(timeStep);
         move(timeStep);
+        return true;
     }
 
     

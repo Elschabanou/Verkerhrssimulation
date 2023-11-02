@@ -37,10 +37,14 @@ public class Verkehrssimulation {
     }
 
     private void makeCars(){
-        cars.add(new Car("Taycan 4s","white",91000,-150000, sec.get(0),this));
-        cars.add(new Car("Taycan s","blue",91000,-150000, sec.get(0),this));
-        cars.add(new Car("Taycan GTS","black",91000,-150000, sec.get(0),this));
-        cars.add(new Car("Taycan","red",91000,-150000, sec.get(0),this));
+        cars.add(new Car("Taycan 4s","white",150000,-150000, sec.get(0),this));
+        cars.add(new Car("Taycan s","blue",91000,-100000, sec.get(0),this));
+        cars.add(new Car("Taycan GTS","black",91000,-100000, sec.get(0),this));
+        cars.add(new Car("Taycan","red",91000,-100000, sec.get(0),this));
+        cars.add(new Car("Taycan 4s","white",91000,-120000, sec.get(0),this));
+        cars.add(new Car("Taycan s","blue",91000,-120000, sec.get(0),this));
+        cars.add(new Car("Taycan GTS","black",91000,-90000, sec.get(0),this));
+        cars.add(new Car("Taycan","red",91000,-90000, sec.get(0),this));
     }
     public Car getPrev(Car driving){
         if(driving == cars.get(0)){
@@ -60,11 +64,11 @@ public class Verkehrssimulation {
     }
 
     public void makeSections(){
-        sec.add(new Section(50, 0.25, Color.GRAY));
-        sec.add(new Section(200,1.5, Color.LIGHT_GRAY));
-        sec.add(new Section(20, 0.1, Color.GRAY));
+        sec.add(new Section(50, 0.1, Color.GRAY));
+        sec.add(new Section(200,0.9, Color.LIGHT_GRAY));
+        sec.add(new Section(30, 0.1, Color.GRAY));
         sec.add(new Section(600, 2, Color.LIGHT_GRAY));
-        sec.add(new Section(10,0.1, Color.GRAY));
+        sec.add(new Section(30,0.1, Color.GRAY));
         sec.add(new Section(100, 0.5, Color.LIGHT_GRAY));
         sec.add(new Section(60,2, Color.GRAY));
     }
@@ -81,7 +85,8 @@ public class Verkehrssimulation {
                 i = sec.size();
             }
         }
-        s = sec.get(j + 1);
+        if(j+1 != sec.size())s = sec.get(j + 1);
+        else s = null;
         return s;
     }
 
@@ -103,7 +108,7 @@ public class Verkehrssimulation {
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
-                cars.get(i).update(0.000000000018); //old: 0.000000001
+                end = !cars.get(i).update(0.00000000005); //realtime: 0.000000000018
                 /*try {
                     Thread.sleep(0);
                   } catch (InterruptedException e) {
