@@ -44,9 +44,9 @@ public class Car {
         this.maxDcc = maxDcc;
         this.section = section;
         this.v = v;
-        this.regler = new PI_Regler(0.000005, 0.000000000005);
-        //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner, desto langsamer)
-        // ki: wie stark schwankt er nach oben aus
+        this.regler = new PI_Regler(0.0000005, 0.0000000000002);
+        //kp: wie schnell wird angestrebte Beschleunigung erreicht (je kleiner, desto langsamer) (0.000005) (menschl. 0.0000005)
+        // ki: wie stark schwankt er nach oben aus (0.000000000005) (menschl. 0.0000000000002)
     }
 
     public static void main(String[] args){

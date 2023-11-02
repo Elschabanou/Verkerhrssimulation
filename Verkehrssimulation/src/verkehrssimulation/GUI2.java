@@ -86,7 +86,7 @@ public class GUI2 {
 
                 
                 add(buttonBreak);
-                //add(buttonInsert);
+                add(buttonInsert);
 
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
