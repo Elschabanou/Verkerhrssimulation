@@ -19,6 +19,10 @@ public class GUI2 {
     private ArrayList<Section> sections = new ArrayList<Section>();
     private Verkehrssimulation v;
     boolean start = true;
+    Section prevSec;
+    int offset = 1400*3/4;
+    int bOffset[] = {offset, offset, offset, offset, offset, offset};
+    double leftSpeed;
 
     public void updateGUI(ArrayList<Car> cars) {
     }
@@ -32,6 +36,7 @@ public class GUI2 {
 
         cars = v.cars;
         sections = v.sec;
+        prevSec = cars.get(0).section;
 
 
         JButton buttonBreak = new JButton("Emergency Break");
@@ -73,7 +78,8 @@ public class GUI2 {
                 double kHeight = 2.3;
                 double dHeight = 7;
                 int offset = getWidth()*3/4;
-                double leftSpeed = cars.get(0).relPos*cars.get(0).section.length*getWidth()*kWidth;
+                double prevLeftSpeed = leftSpeed;
+                leftSpeed = cars.get(0).relPos*cars.get(0).section.length*getWidth()*kWidth;
 
                 g.setColor(Color.WHITE);
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
@@ -88,6 +94,17 @@ public class GUI2 {
                 } catch(IOException e){
                     System.out.println(e);
                 }*/
+
+                int[] xOffsets = {-700, -300, 150, -250, -500, 200};
+                int[] yOffsets = {20, 70, 50, 350, 450, 375};
+                for(int i=0; i<6; i++){
+                    if(cars.get(0).section != prevSec){
+                        prevSec = cars.get(0).section;
+                        for(int l=0; l<6; l++){bOffset[l] -= prevLeftSpeed;}
+                    }if((int)(bOffset[i] - leftSpeed)+xOffsets[i]<-100) bOffset[i] = (int)(getWidth()+leftSpeed + 5)-xOffsets[i];
+                    g.setColor(Color.BLACK);
+                    g.fillRect((int)(bOffset[i] - leftSpeed)+xOffsets[i], yOffsets[i], 20, 50);
+                }
 
                 for (int i = 0; i < sections.size(); i++){
                    
