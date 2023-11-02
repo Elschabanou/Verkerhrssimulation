@@ -23,6 +23,7 @@ public class Car {
     public double timeGes = 0;
     double lastTime = 0;
     double brakingDist = 0;
+    public boolean eBreak = false;
 
     public Car(String name, String colour, double maxAcc, double maxDcc, Section section, Verkehrssimulation v){
         this.name = name;
@@ -66,7 +67,7 @@ public class Car {
 
         brakingDist = (velocity/10)*(velocity/10) - (nextSpeed/9)*(nextSpeed/9);
         
-        if((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed)){
+        if(eBreak || ((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed))){
             updateAcceleration(maxDcc, timeStep);
         }else if((distance*1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
             updateAcceleration(maxAcc, timeStep);
