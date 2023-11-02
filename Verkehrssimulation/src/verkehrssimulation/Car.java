@@ -78,9 +78,9 @@ public class Car {
 
         brakingDist = (velocity/10)*(velocity/10) - (nextSpeed/9)*(nextSpeed/9);
         //if(eBreak)System.out.println(eBreak);
-        if((eBreak && velocity>0) || ((distance*1000) < velocity/2 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed))){
+        if((eBreak && velocity>0) || (velocity>0 && ((distance*1000) < velocity/2+10 || velocity > section.maxSpeed || ((brakingDist >= (1-relPos)*section.length*1000) && velocity > nextSpeed)))){
             updateAcceleration(maxDcc, timeStep);
-        }else if((distance*1000) > (velocity/2 + 0.005) && velocity < section.maxSpeed){
+        }else if(((distance*1000) > (velocity/2+10) && distance*1000 > 10) && velocity < section.maxSpeed){
             updateAcceleration(maxAcc, timeStep);
         }else{
             updateAcceleration(0.0, timeStep);
