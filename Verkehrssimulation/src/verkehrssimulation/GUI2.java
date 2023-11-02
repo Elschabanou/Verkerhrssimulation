@@ -37,8 +37,8 @@ public class GUI2 {
                 int panelWidth = getWidth();
                 int panelHeight = getHeight();
 
-                //g.setColor(Color.decode("#7aad55"));
-                //g.fillRect(0, 0, panelWidth, panelHeight);
+                g.setColor(Color.decode("#7aad55"));
+                g.fillRect(0, 0, panelWidth, panelHeight);
                 
                 
 
@@ -51,12 +51,12 @@ public class GUI2 {
                 g.setColor(Color.WHITE);
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
                    
-                try{
-                BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
-                g.drawImage(background, (int)((offset - sections.get(0).length*getWidth()*kWidth) - (leftSpeed)), 0, this);
+                /*try{
+                    BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
+                    g.drawImage(background, (int)((offset - sections.get(0).length*getWidth()*kWidth) - (leftSpeed)), 0, this);
                 } catch(IOException e){
                     System.out.println(e);
-                }
+                }*/
 
                for (int i = 0; i < sections.size(); i++){
                    
