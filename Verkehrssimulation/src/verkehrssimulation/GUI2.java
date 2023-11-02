@@ -37,8 +37,15 @@ public class GUI2 {
                 int panelWidth = getWidth();
                 int panelHeight = getHeight();
 
-                g.setColor(Color.decode("#7aad55"));
-                g.fillRect(0, 0, panelWidth, panelHeight);
+                //g.setColor(Color.decode("#7aad55"));
+                //g.fillRect(0, 0, panelWidth, panelHeight);
+                
+                try{
+                BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
+                g.drawImage(background, 0, 0, this);
+                } catch(IOException e){
+                    System.out.println(e);
+                }
 
                 double kWidth = 3;
                 int offset = getWidth()*3/4;
