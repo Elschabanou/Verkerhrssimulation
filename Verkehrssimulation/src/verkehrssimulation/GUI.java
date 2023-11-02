@@ -62,7 +62,7 @@ public class GUI {
         }
 
     public static void createAndShowGUI() {
-        GUI gui = new GUI();
+        //GUI gui = new GUI();
         
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
