@@ -26,7 +26,7 @@ public class GUI2 {
 
         JFrame frame = new JFrame("Verkehrssimulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1400, 800);
+        frame.setSize(1400, 580);
         cars = v.cars;
         sections = v.sec;
 
@@ -48,41 +48,41 @@ public class GUI2 {
                 }
 
                 double kWidth = 3;
+                double kHeight = 2.3;
+                double dHeight = 7;
                 int offset = getWidth()*3/4;
                 double leftSpeed = cars.get(0).relPos*cars.get(0).section.length*getWidth()*kWidth;
 
-                System.out.println(getWidth());
-
-                g.setColor(Color.BLACK);
-                g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 10);
+                g.setColor(Color.WHITE);
+                g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
 
                for (int i = 0; i < sections.size(); i++){
                     if(i == v.getSectionNr(cars.get(0).section)){
-                        g.setColor(Color.BLACK);
+                        g.setColor(Color.WHITE);
                         g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset) - (leftSpeed)), getHeight()/3 - 20);
                         g.setColor(sections.get(i).color);
                         g.fillRect((int)((offset) - (leftSpeed)), 
-                        getHeight()/3, 
+                        (int)(getHeight()/kHeight), 
                         (int)(sections.get(i).length*getWidth()*kWidth), 
-                        getHeight()/5);
+                        (int)(getHeight()/dHeight));
                     }
                     else if(i < v.getSectionNr(cars.get(0).section)){
-                        g.setColor(Color.BLACK);
+                        g.setColor(Color.WHITE);
                         if(i+1 == v.getSectionNr(cars.get(0).section))g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset - sections.get(i).length*getWidth()*kWidth) - (leftSpeed)), getHeight()/3 - 20);
                         g.setColor(sections.get(i).color);
                         g.fillRect((int)((offset - sections.get(i).length*getWidth()*kWidth) - (leftSpeed)), 
-                        getHeight()/3, 
+                        (int)(getHeight()/kHeight),
                         (int)(sections.get(i).length*getWidth()*kWidth), 
-                        getHeight()/5); 
+                        (int)(getHeight()/dHeight));
                     }
                     else if(i > v.getSectionNr(cars.get(0).section)){
-                        g.setColor(Color.BLACK);
+                        g.setColor(Color.WHITE);
                         if(i == 1+ v.getSectionNr(cars.get(0).section)) g.drawString("Limit: " + sections.get(i).maxSpeed, (int)((offset + cars.get(0).section.length*getWidth()*kWidth) - (leftSpeed)), getHeight()/3 - 20);
                         g.setColor(sections.get(v.getSectionNr(v.getNewSection(cars.get(0).section))).color);
                         g.fillRect((int)((offset + cars.get(0).section.length*getWidth()*kWidth) - (leftSpeed)), 
-                        getHeight()/3, 
+                        (int)(getHeight()/kHeight),
                         (int)(sections.get(i).length*getWidth()*kWidth), 
-                        getHeight()/5);
+                        (int)(getHeight()/dHeight));
                     }
                         //System.out.print((int)((offset + sections.get(i).offset*getWidth()) - (leftSpeed)));
                         //System.out.print((cars.get(0).relPos + v.getSectionNr(cars.get(0).section))/(sections.size()-1));
@@ -95,27 +95,26 @@ public class GUI2 {
 
                 for (int i = 0; i < cars.size(); i++) {
                     try {
-                        g.setColor(Color.BLACK);
+                        g.setColor(Color.WHITE);
                         
                         BufferedImage image = ImageIO.read(GUI2.class.getResource("images/Taycan_Topview_" + cars.get(i).colour + "_small.png"));
                         
                         g.setFont(g.getFont().deriveFont(100.0f));
                         if(i!=0){
                             
-                            g.drawImage(image, (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                            g.drawImage(image, (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/kHeight+getHeight()/5*0.2), this);
                             //g.drawString(".", (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2));
                             //g.drawRect((int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
                             g.setFont(g.getFont().deriveFont(15.0f));
-                            g.drawString(/* "Speed: " +*/ String.valueOf((int)(cars.get(i).velocity)), (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/3+getHeight()/5*0.2) + 80);
+                            g.drawString(/* "Speed: " +*/ String.valueOf((int)(cars.get(i).velocity)), (int)(offset - (cOffset + cars.get(i).distance)*getWidth() * kWidth), (int)(getHeight()/kHeight+getHeight()/5*0.2) + 80);
                         }else {
-                            g.drawImage(image, (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), this);
+                            g.drawImage(image, (int)(offset), (int)(getHeight()/kHeight+getHeight()/5*0.2), this);
                             //g.drawString(".", (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2));
                             
                             //g.drawRect((int)(offset), (int)(getHeight()/3+getHeight()/5*0.2), 30, 13);
                             g.setFont(g.getFont().deriveFont(15.0f));
-                            g.drawString(/* "Speed: " +*/ String.valueOf((int)(cars.get(i).velocity)), (int)(offset), (int)(getHeight()/3+getHeight()/5*0.2) + 80);
+                            g.drawString(/* "Speed: " +*/ String.valueOf((int)(cars.get(i).velocity)), (int)(offset), (int)(getHeight()/kHeight+getHeight()/5*0.2) + 80);
                         }
-                        System.out.println(cOffset);
                         if(i>0)cOffset += cars.get(i).distance;
 
                     } catch (IOException e) {
