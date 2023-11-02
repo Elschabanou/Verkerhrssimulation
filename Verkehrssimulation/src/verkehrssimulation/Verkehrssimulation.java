@@ -61,7 +61,7 @@ public class Verkehrssimulation {
 
     public void makeSections(){
         sec.add(new Section(50, 0.25, Color.GRAY));
-        sec.add(new Section(200,0.8, Color.LIGHT_GRAY));
+        sec.add(new Section(200,1.5, Color.LIGHT_GRAY));
         sec.add(new Section(20, 0.1, Color.GRAY));
         sec.add(new Section(600, 2, Color.LIGHT_GRAY));
         sec.add(new Section(10,0.1, Color.GRAY));
