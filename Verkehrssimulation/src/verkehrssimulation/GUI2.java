@@ -53,15 +53,9 @@ public class GUI2 {
         });
 
         JButton buttonInsert = new JButton("insert new Car");
-        buttonInsert.setBounds(10,100, 50, 20);
+        buttonInsert.setBounds(10,80, 150, 20);
         buttonInsert.setVisible(true);
-        buttonInsert.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                insertionFrame();
-
-            }
-        });
+        buttonInsert.addActionListener(insertAction);
 
         JPanel drawingPanel = new JPanel() {
             @Override
@@ -84,7 +78,7 @@ public class GUI2 {
                 g.setColor(Color.WHITE);
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
 
-                
+
                 add(buttonBreak);
                 add(buttonInsert);
 
@@ -95,8 +89,8 @@ public class GUI2 {
                     System.out.println(e);
                 }*/
 
-                int[] xOffsets = {-800, -300, 150, -250, -600, 200};
-                int[] yOffsets = {120, 70, 50, 350, 400, 375};
+                double[] xOffsets = {-800.0/1400.0, -300.0/1400.0, 150.0/1400.0, -250.0/1400.0, -600.0/1400.0, 200.0/1400.0};
+                double[] yOffsets = {120.0/580.0, 70.0/580.0, 50.0/580.0, 350.0/580.0, 400.0/580.0, 375.0/580.0};
                 String [] imgNames = {"1", "4", "2", "5", "4", "5"};
                 for(int i=0; i<6; i++){
                     try{
@@ -104,9 +98,9 @@ public class GUI2 {
                         if(cars.get(0).section != prevSec){
                             prevSec = cars.get(0).section;
                             for(int l=0; l<6; l++){bOffset[l] -= prevLeftSpeed;}
-                        }if((int)(bOffset[i] - leftSpeed)+xOffsets[i]<-100) bOffset[i] = (int)(getWidth()+leftSpeed + 5)-xOffsets[i];
+                        }if((int)(bOffset[i] - leftSpeed)+xOffsets[i]*getWidth()<-100) bOffset[i] = (int)(getWidth()+leftSpeed + 5)-(int)(xOffsets[i]*getWidth());
                         g.setColor(Color.BLACK);
-                        g.drawImage(img, (int)(bOffset[i] - leftSpeed)+xOffsets[i], yOffsets[i], this);
+                        g.drawImage(img, (int)(bOffset[i] - leftSpeed)+(int)(xOffsets[i]*getWidth()), (int)(yOffsets[i]*getHeight()), this);
                     }catch(IOException e){
                         System.out.println(e);
                     }
@@ -203,6 +197,14 @@ public class GUI2 {
 
         frame.setVisible(true);
     }
+
+    ActionListener insertAction =  new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            insertionFrame();
+
+        }
+    };
 
     public void insertionFrame(){
 
