@@ -23,6 +23,16 @@ public class GUI2 {
     int offset = 1400*3/4;
     int bOffset[] = {offset, offset, offset, offset, offset, offset};
     double leftSpeed;
+    MouseAdapter mAdapter = new MouseAdapter(){
+        @Override
+        public void mousePressed(MouseEvent e){
+            cars.get(0).eBreak = true;
+        }
+        @Override
+        public void mouseReleased(MouseEvent e){
+            cars.get(0).eBreak = false;
+        }
+    };
 
     public void updateGUI(ArrayList<Car> cars) {
     }
@@ -41,16 +51,7 @@ public class GUI2 {
 
         JButton buttonBreak = new JButton("Emergency Break");
         buttonBreak.setBounds(10, 50, 150, 20);
-        buttonBreak.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mousePressed(MouseEvent e){
-                cars.get(0).eBreak = true;
-            }
-            @Override
-            public void mouseReleased(MouseEvent e){
-                cars.get(0).eBreak = false;
-            }
-        });
+        buttonBreak.addMouseListener(mAdapter);
 
         JButton buttonInsert = new JButton("insert new Car");
         buttonInsert.setBounds(10,80, 150, 20);
@@ -68,7 +69,7 @@ public class GUI2 {
                 g.fillRect(0, 0, panelWidth, panelHeight);
                 
 
-                double kWidth = 3;
+                double kWidth = 3; //3
                 double kHeight = 2.3;
                 double dHeight = 7;
                 int offset = getWidth()*3/4;
@@ -78,9 +79,6 @@ public class GUI2 {
                 g.setColor(Color.WHITE);
                 g.drawString("Zeit (sec): " + (int)(cars.get(0).timeGes*60*60), 10, 25);
 
-
-                add(buttonBreak);
-                add(buttonInsert);
 
                 /*try{
                     BufferedImage background = ImageIO.read(GUI2.class.getResource("images/background.jpg"));
@@ -150,7 +148,7 @@ public class GUI2 {
                         g.setColor(Color.RED);
                         g.drawString("CRASH!", getWidth()/2, getHeight()/4);
                         cars.get(i).velocity = 0;
-                        cars.get(i).relPos = cars.get(i-1).relPos - 0.007/cars.get(i).section.length;
+                        cars.get(i).relPos = cars.get(i-1).relPos - 0.0072/cars.get(i).section.length;
                         //cars.get(i).relPos = cars.get(i-1).relPos - 30/getWidth()/kWidth;
                     }
                     try {
@@ -183,6 +181,9 @@ public class GUI2 {
             }
         };
 
+
+        drawingPanel.add(buttonBreak);
+        drawingPanel.add(buttonInsert);
         frame.add(drawingPanel);
 
 
