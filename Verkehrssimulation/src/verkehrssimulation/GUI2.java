@@ -282,11 +282,11 @@ public class GUI2 {
                 }
                 int posOfPrevCar = ((int) place.getValue())-1;
 
-                System.out.println("name des Autos: "+ nameOfCar);
+                /*System.out.println("name des Autos: "+ nameOfCar);
                 System.out.println("farbe des Autos: "+ colourOfCar);
                 System.out.println("Beschleunigung: "+accOfCar);
                 System.out.println("Entschleunigung: "+dccOfCar);
-                System.out.println("PosOFPrevCar in Array als Index: " + posOfPrevCar);
+                System.out.println("PosOFPrevCar in Array als Index: " + posOfPrevCar);*/
 
                 Section s = v.cars.get(posOfPrevCar).section;
 
@@ -327,14 +327,14 @@ public class GUI2 {
 
                 cars = v.cars;
 
-                System.out.println("Maximales Speed in dieser Section: " + n.section.getmaxSpeed());
+                //System.out.println("Maximales Speed in dieser Section: " + n.section.getmaxSpeed());
 
-                for(int i = 0; i < v.cars.size(); i++){
+                /*for(int i = 0; i < v.cars.size(); i++){
                     System.out.println(i + " Farbe: " +v.cars.get(i).colour + " Geschw: " +v.cars.get(i).velocity + " maxDcc: " + v.cars.get(i).maxDcc);
                 }
                 for(int i = 0; i < cars.size(); i++){
                     System.out.println(i + " Farbe: " +cars.get(i).colour + " Geschw: " +cars.get(i).velocity);
-                }
+                }*/
             }
         });
 

@@ -52,7 +52,7 @@ public class Verkehrssimulation {
         cars.add(new Car("Taycan 4s","white",90000,-150000, sec.get(0),this));
         cars.add(new Car("Taycan s","grey",90000,-150000, sec.get(0),this));
         cars.add(new Car("Taycan GTS","green",91000,-100000, sec.get(0),this));
-        cars.add(new Car("Taycan","beige",91000,-80000, sec.get(0),this));
+        cars.add(new Car("Taycan","beige",91000,-150000, sec.get(0),this));
         cars.add(new Car("Taycan 4s","white",91000,-120000, sec.get(0),this));
         cars.add(new Car("Taycan s","blue",91000,-120000, sec.get(0),this));
         cars.add(new Car("Taycan GTS","green",91000,-90000, sec.get(0),this));
@@ -124,7 +124,7 @@ public class Verkehrssimulation {
         while(!end){
             for(int i = 0; i<cars.size();i++)
             {
-                end = !cars.get(i).update(0.00000000005); //realtime (mac): 0.00000000005
+                end = !cars.get(i).update(0.00000000008); //realtime (mac): 0.00000000005
                 /*try {
                     Thread.sleep(0);
                   } catch (InterruptedException e) {
